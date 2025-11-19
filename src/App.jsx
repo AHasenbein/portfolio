@@ -1,0 +1,318 @@
+import React, { useState, useEffect } from 'react';
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  X,
+  Terminal,
+  Code2,
+  Cpu,
+  Database,
+  Layout,
+  BarChart3,
+  GraduationCap
+} from 'lucide-react';
+// Assuming ParticleBackground is correctly implemented and works
+import ParticleBackground from './ParticleBackground';
+
+// --- IMPORT THE PROJECTS DATA ---
+import PROJECTS_DATA from './projectsData'; // Ensure the path is correct
+
+// --- RESUME DATA POPULATION ---
+const PORTFOLIO_DATA = {
+  name: "ALEXANDER HASENBEIN",
+  title: "Full Stack Developer & Data Scientist",
+  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics) and a Division III athlete. I am well versed in multiple programming languages, framweorks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
+
+  // Categorized skills from your resume
+  skills: [
+    { category: "Frontend", icon: <Layout size={20} />, items: "React, Next.js, Three.js, HTML/CSS, Tailwind" },
+    { category: "Backend", icon: <Code2 size={20} />, items: "Node.js, Java, C++, C#, Python" },
+    { category: "Data & DB", icon: <Database size={20} />, items: "MongoDB, MySQL, Web Scraping, Analytics" },
+    { category: "Tools", icon: <Cpu size={20} />, items: "Git, PyQt6, Deployment Pipelines" },
+  ],
+
+  // The 'projects' array has been removed from here
+  email: "hasenbeinalex@gmail.com",
+  linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
+};
+
+// --- COMPONENT: STICKY NAVBAR (Fix: Added dynamic background on scroll) ---
+const StickyNavbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' : 'bg-transparent'}`}>
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <span className="font-bold text-xl tracking-tight text-gray-900">
+          ALEXANDER<span className="text-indigo-600">.</span>
+        </span>
+        <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
+          <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
+          <a href="#skills" className="hover:text-indigo-600 transition-colors">Skills</a>
+          <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
+          <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+// --- COMPONENT: PROJECT WINDOW MODAL (Kept mostly as is - very good design) ---
+const ProjectModal = ({ project, onClose }) => {
+  if (!project) return null;
+  return (
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm" onClick={onClose}>
+      {/* Browser Window Container */}
+      <div
+        className="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Browser Header */}
+        <div className="bg-gray-100 border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <div className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 cursor-pointer" onClick={onClose}></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
+            <div className="w-3 h-3 rounded-full bg-green-400"></div>
+          </div>
+          <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-500 border border-gray-200 flex-1 mx-6 text-center font-mono truncate">
+            localhost:3000/projects/{project.title.toLowerCase().replace(/\s/g, '-')}
+          </div>
+          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Browser Content Area */}
+        <div className="flex flex-col md:flex-row max-h-[80vh] md:max-h-none">
+          {/* Image Side */}
+          <div className="w-full md:w-2/3 bg-gray-50 border-r border-gray-200 relative group overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+          </div>
+
+          {/* Details Side */}
+          <div className="w-full md:w-1/3 p-6 bg-white flex flex-col overflow-y-auto">
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tech.split(',').map((t, i) => (
+                <span key={i} className="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-md border border-indigo-100">
+                  {t.trim()}
+                </span>
+              ))}
+            </div>
+            <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+              {project.description}
+            </p>
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 transition-all active:scale-95 font-medium text-sm"
+              >
+                View Live Project <ExternalLink size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// --- COMPONENT: STANDARD FOOTER (Fix: Replaced broken fixed footer) ---
+const Footer = () => (
+    <footer className="w-full bg-gray-950 text-gray-400 flex flex-col items-center justify-center text-center p-12 md:p-16 font-mono border-t-8 border-indigo-600/50">
+      <div className="max-w-md">
+        <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
+        <h4 className="text-xl text-gray-200 mb-2">System Status: <span className="text-green-400">Online</span></h4>
+        <div className="text-sm text-gray-600 mb-8 space-y-1">
+          <p> User: Alexander Hasenbein</p>
+          <p> Location: Austin, TX</p>
+          <p> Scroll_Depth: 100%</p>
+          <p> Secret_Protocol: Initiated...</p>
+        </div>
+        <div className="flex justify-center space-x-4 mb-6">
+            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="text-gray-400 hover:text-indigo-400 transition-colors">
+                <Mail size={20} />
+            </a>
+            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
+                <Linkedin size={20} />
+            </a>
+            {/* Added a placeholder for Github link, you should add this to your data */}
+            <a href="#" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-200 transition-colors">
+                <Github size={20} />
+            </a>
+        </div>
+        <p className="text-xs text-gray-700 mt-4">
+          © {new Date().getFullYear()} Alexander Hasenbein. <br/> Built with React, Tailwind & Three.js particles.
+        </p>
+      </div>
+    </footer>
+);
+
+// --- MAIN APP COMPONENT ---
+const App = () => {
+  const [activeProject, setActiveProject] = useState(null);
+
+  return (
+    <div className="bg-gray-50 min-h-screen font-sans text-gray-900 selection:bg-indigo-100 selection:text-indigo-900">
+      <StickyNavbar />
+
+      {/* HERO SECTION */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+        {/* Particle Background Layer (Z-0) */}
+        <div className="absolute inset-0 z-0 opacity-50">
+          <ParticleBackground />
+        </div>
+
+        {/* Content Layer (Z-10) - MODIFIED to use pointer-events-none */}
+        <div className="relative z-10 text-center px-6 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 pointer-events-none">
+
+          <h1 className="text-5xl md:text-8xl font-extrabold tracking-tight text-gray-900 mb-6 leading-none">
+            {PORTFOLIO_DATA.name}
+          </h1>
+          <p className="text-xl md:text-3xl text-gray-600 font-light mb-10">
+            {PORTFOLIO_DATA.title}
+          </p>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            {/* Links re-enabled with pointer-events-auto */}
+            <a href="#projects" className="px-10 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-transform hover:-translate-y-1 shadow-xl shadow-indigo-600/30 active:scale-95 pointer-events-auto">
+              View Projects
+            </a>
+            <a href="#contact" className="px-10 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg font-semibold hover:bg-gray-100 transition-transform hover:-translate-y-1 shadow-md active:scale-95 pointer-events-auto">
+              Contact Me
+            </a>
+          </div>
+        </div>
+
+        {/* Fade Overlay */}
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-gray-50 to-transparent z-10 pointer-events-none"></div>
+      </section>
+
+      {/* MAIN CONTENT AREA */}
+      <main className="relative z-20 bg-gray-50">
+
+        {/* ABOUT SECTION */}
+        <section id="about" className="py-28 px-6 max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="flex items-center gap-2 text-indigo-600 mb-4">
+                <GraduationCap size={28} />
+                <span className="font-extrabold tracking-wider text-sm uppercase">About Me & Education</span>
+              </div>
+              <h3 className="text-4xl font-bold mb-6 text-gray-900">Penn State Behrend</h3>
+              <p className="text-xl text-gray-700 leading-relaxed mb-8 border-l-4 border-indigo-400 pl-4">
+                {PORTFOLIO_DATA.about}
+              </p>
+              <ul className="space-y-3 text-gray-600 text-lg">
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> BS:Computer Science & Mathematics (Honors)</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Graduation: Class of 2028</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> UIL Academic All-State & VEX Robotics Winner</li>
+              </ul>
+            </div>
+
+            {/* SKILLS GRID */}
+            <div id="skills" className="grid grid-cols-1 gap-6 p-6 bg-white rounded-xl shadow-xl border border-gray-100">
+                <h3 className="text-2xl font-bold text-gray-900 border-b pb-3 mb-3">Core Competencies</h3>
+              {PORTFOLIO_DATA.skills.map((skill, idx) => (
+                <div key={idx} className="p-4 rounded-lg hover:bg-indigo-50 transition-all border border-transparent hover:border-indigo-200">
+                  <div className="flex items-center gap-4 mb-1">
+                    <div className="p-3 bg-indigo-100 rounded-full text-indigo-600 flex-shrink-0">
+                      {skill.icon}
+                    </div>
+                    <h4 className="font-bold text-lg text-gray-900">{skill.category}</h4>
+                  </div>
+                  <p className="text-gray-600 text-sm pl-[60px]">{skill.items}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PROJECTS SECTION */}
+        <section id="projects" className="py-28 bg-white border-y border-gray-200 shadow-inner">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="mb-16">
+              <h3 className="text-4xl font-bold text-gray-900 mb-3">Selected Works</h3>
+              <p className="text-xl text-gray-500">A showcase of technical depth and design precision.</p>
+              <div className="mt-4 text-sm text-gray-400 font-mono">
+                // Click cards to view technical details
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-10">
+              {PROJECTS_DATA.map((project) => ( // NOTE: Updated to use PROJECTS_DATA
+                <div
+                  key={project.id}
+                  className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                  onClick={() => setActiveProject(project)}
+                >
+                  <div className="relative overflow-hidden aspect-[4/3] rounded-t-xl">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/30 transition-colors flex items-center justify-center">
+                      <span className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 bg-white/90 backdrop-blur text-gray-900 px-4 py-2 rounded-full shadow-xl font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-gray-200">
+                        <ExternalLink size={14} /> Preview Details
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <h4 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">{project.title}</h4>
+                    <p className="text-sm text-gray-500 mt-1 font-mono">{project.tech}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT SECTION */}
+        <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
+          <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+            I live over the summer in Austin, Texas and go to school in Erie, PA
+            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center gap-6">
+            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
+              <Mail size={20} />
+              {PORTFOLIO_DATA.email}
+            </a>
+            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors shadow-lg font-semibold">
+              <Linkedin size={20} className='text-[#0077b5]' />
+              LinkedIn Profile
+            </a>
+          </div>
+          <p className="mt-12 text-gray-500 text-lg font-mono">{PORTFOLIO_DATA.phone}</p>
+        </section>
+
+      </main>
+
+      {/* FOOTER (Now a standard component) */}
+      <Footer />
+
+      {/* MODAL COMPONENT */}
+      <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+    </div>
+  );
+};
+
+export default App;
