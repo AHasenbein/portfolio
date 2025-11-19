@@ -2,6 +2,7 @@
 import bowieImg from './assets/bowieForum.png';
 import particlesImg from './assets/particles.png';
 import lepusImg from './assets/lepus.png';
+import sand from  './assets/sand.png';
 
 const PROJECTS_DATA = [
   {
@@ -28,7 +29,15 @@ const PROJECTS_DATA = [
     image: lepusImg,
     link: "https://lepusanalytics.com/",
     description: "Based on experience..."
-  }
+  },
+  // {
+  //   id: 4,
+  //   title: "Sandwhich Hero",
+  //   tech: "javascript, game design, React",
+  //   image: sand,
+  //   link: "https://sandhero.netlify.app/",
+  //   description: "Based on experience..."
+  // }
 ];
 
 export default PROJECTS_DATA;
