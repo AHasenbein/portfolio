@@ -54,7 +54,7 @@ const StickyNavbar = () => {
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' : 'bg-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="font-bold text-xl tracking-tight text-gray-900">
-          TRY. FAIL. LEARN<span className="text-indigo-600">.</span>
+          TRY. FAIL. INNOVATE<span className="text-indigo-600">.</span>
         </span>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
           <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
