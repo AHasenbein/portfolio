@@ -10,20 +10,33 @@ import {
   Cpu,
   Database,
   Layout,
-  BarChart3,
-  GraduationCap
+  GraduationCap,
+  FileText, // Added
+  Download  // Added
 } from 'lucide-react';
+
 // Assuming ParticleBackground is correctly implemented and works
 import ParticleBackground from './ParticleBackground';
 
 // --- IMPORT THE PROJECTS DATA ---
-import PROJECTS_DATA from './projectsData'; // Ensure the path is correct
+import PROJECTS_DATA from './projectsData';
+
+// ==========================================
+// 1. PUT YOUR RESUME FILES HERE
+// ==========================================
+ import resumeImg from './assets/resumeImg.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+ import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+
+// FOR NOW, I am using placeholders so the code doesn't crash when you copy-paste.
+// REPLACE these variables with the imports above when you are ready.
+const RESUME_PREVIEW_IMAGE = resumeImg; 
+const RESUME_PDF_LINK = resumePDF; 
 
 // --- RESUME DATA POPULATION ---
 const PORTFOLIO_DATA = {
   name: "ALEXANDER HASENBEIN",
   title: "Full Stack Developer & Data Scientist",
-  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics) and a Division III athlete. I am well versed in multiple programming languages, framweorks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
+  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics) and a Division III athlete. I am well versed in multiple programming languages, frameworks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
 
   // Categorized skills from your resume
   skills: [
@@ -33,12 +46,12 @@ const PORTFOLIO_DATA = {
     { category: "Tools", icon: <Cpu size={20} />, items: "Git, PyQt6, Deployment Pipelines" },
   ],
 
-  // The 'projects' array has been removed from here
   email: "hasenbeinalex@gmail.com",
   linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
+  phone: "(555) 555-5555" // Placeholder if you want it
 };
 
-// --- COMPONENT: STICKY NAVBAR (Fix: Added dynamic background on scroll) ---
+// --- COMPONENT: STICKY NAVBAR ---
 const StickyNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
@@ -60,6 +73,7 @@ const StickyNavbar = () => {
           <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
           <a href="#skills" className="hover:text-indigo-600 transition-colors">Skills</a>
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
+          <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
       </div>
@@ -67,7 +81,80 @@ const StickyNavbar = () => {
   );
 };
 
-// --- COMPONENT: PROJECT WINDOW MODAL (Kept mostly as is - very good design) ---
+// --- COMPONENT: RESUME SECTION (NEW) ---
+const ResumeSection = () => {
+  return (
+    <section id="resume" className="py-28 px-6 bg-gray-50 relative overflow-hidden border-t border-gray-200">
+      <div className="max-w-5xl mx-auto">
+        
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+          <div>
+            <div className="flex items-center gap-2 text-indigo-600 mb-2">
+                <FileText size={24} />
+                <span className="font-extrabold tracking-wider text-sm uppercase">Professional Experience</span>
+            </div>
+            <h3 className="text-4xl font-bold text-gray-900 mb-4">My Resume</h3>
+            <p className="text-gray-600 max-w-xl text-lg">
+              A snapshot of my academic excellence, technical expertise, and project history. 
+            </p>
+          </div>
+          
+          {/* Download Button */}
+          <a 
+            href={RESUME_PDF_LINK} 
+            download="Alexander_Hasenbein_Resume.pdf"
+            className="flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-1 group font-medium"
+          >
+            <Download size={20} className="group-hover:animate-bounce" />
+            <span>Download PDF</span>
+          </a>
+        </div>
+
+        {/* Resume Preview Container */}
+        <div className="relative group flex justify-center">
+          {/* Decorative backdrop glow */}
+          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100 to-transparent rounded-3xl -m-4 blur-xl opacity-50"></div>
+          
+          {/* The Resume "Paper" */}
+          <div className="relative w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden ring-1 ring-gray-900/5 transform transition-transform duration-500 group-hover:scale-[1.01]">
+            {/* Top Bar (Like a browser or document viewer) */}
+            <div className="h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 justify-between">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-400 border border-red-500/20"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500/20"></div>
+                <div className="w-3 h-3 rounded-full bg-green-400 border border-green-500/20"></div>
+              </div>
+              <div className="text-xs text-gray-400 font-mono flex items-center gap-2 opacity-70">
+                <FileText size={12} /> Alexander_Hasenbein_Resume.pdf (Preview)
+              </div>
+              <div className="w-8"></div> {/* Spacer to center text */}
+            </div>
+
+            {/* The Image itself */}
+            <div className="relative bg-gray-50 overflow-hidden">
+                {/* Make sure your PNG is High Resolution (at least 2000px wide) 
+                   so it looks crisp on retina displays 
+                */}
+                <img 
+                  src={RESUME_PREVIEW_IMAGE} 
+                  alt="Alexander Hasenbein Resume" 
+                  className="w-full h-auto block hover:opacity-95 transition-opacity"
+                />
+                
+                {/* Hover Overlay Tip */}
+                <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/5 transition-colors pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100">
+                </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+// --- COMPONENT: PROJECT WINDOW MODAL ---
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
   return (
@@ -133,7 +220,7 @@ const ProjectModal = ({ project, onClose }) => {
   );
 };
 
-// --- COMPONENT: STANDARD FOOTER (Fix: Replaced broken fixed footer) ---
+// --- COMPONENT: STANDARD FOOTER ---
 const Footer = () => (
     <footer className="w-full bg-gray-950 text-gray-400 flex flex-col items-center justify-center text-center p-12 md:p-16 font-mono border-t-8 border-indigo-600/50">
       <div className="max-w-md">
@@ -152,7 +239,6 @@ const Footer = () => (
             <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Linkedin size={20} />
             </a>
-            {/* Added a placeholder for Github link, you should add this to your data */}
             <a href="#" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-200 transition-colors">
                 <Github size={20} />
             </a>
@@ -179,7 +265,7 @@ const App = () => {
           <ParticleBackground />
         </div>
 
-        {/* Content Layer (Z-10) - MODIFIED to use pointer-events-none */}
+        {/* Content Layer (Z-10) */}
         <div className="relative z-10 text-center px-6 max-w-5xl mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 pointer-events-none">
 
           <h1 className="text-5xl md:text-8xl font-extrabold tracking-tight text-gray-900 mb-6 leading-none">
@@ -190,7 +276,6 @@ const App = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {/* Links re-enabled with pointer-events-auto */}
             <a href="#projects" className="px-10 py-4 bg-indigo-600 text-white rounded-lg font-semibold hover:bg-indigo-700 transition-transform hover:-translate-y-1 shadow-xl shadow-indigo-600/30 active:scale-95 pointer-events-auto">
               View Projects
             </a>
@@ -220,7 +305,7 @@ const App = () => {
                 {PORTFOLIO_DATA.about}
               </p>
               <ul className="space-y-3 text-gray-600 text-lg">
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> BS:Computer Science & Mathematics (Honors)</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> BS: Computer Science & Mathematics (Honors)</li>
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Graduation: Class of 2028</li>
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> UIL Academic All-State & VEX Robotics Winner</li>
               </ul>
@@ -256,7 +341,7 @@ const App = () => {
             </div>
 
             <div className="grid md:grid-cols-3 gap-10">
-              {PROJECTS_DATA.map((project) => ( // NOTE: Updated to use PROJECTS_DATA
+              {PROJECTS_DATA.map((project) => (
                 <div
                   key={project.id}
                   className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
@@ -284,6 +369,9 @@ const App = () => {
           </div>
         </section>
 
+        {/* NEW RESUME SECTION */}
+        <ResumeSection />
+
         {/* CONTACT SECTION */}
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
           <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
@@ -306,7 +394,7 @@ const App = () => {
 
       </main>
 
-      {/* FOOTER (Now a standard component) */}
+      {/* FOOTER */}
       <Footer />
 
       {/* MODAL COMPONENT */}
