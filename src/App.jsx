@@ -48,7 +48,7 @@ const PORTFOLIO_DATA = {
 
   email: "hasenbeinalex@gmail.com",
   linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
-  phone: "(555) 555-5555" // Placeholder if you want it
+  phone: "(412) 353-9375" // Placeholder if you want it
 };
 
 // --- COMPONENT: STICKY NAVBAR ---
