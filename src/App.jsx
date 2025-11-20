@@ -48,7 +48,7 @@ const PORTFOLIO_DATA = {
 
   email: "hasenbeinalex@gmail.com",
   linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
-  phone: "(412) 353-9375" // Placeholder if you want it
+  phone: "(412) 353-9375" 
 };
 
 // --- COMPONENT: STICKY NAVBAR ---
@@ -389,7 +389,7 @@ const App = () => {
               LinkedIn Profile
             </a>
           </div>
-          <p className="mt-12 text-gray-500 text-lg font-mono">{PORTFOLIO_DATA.phone}</p>
+          <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p>
         </section>
 
       </main>
