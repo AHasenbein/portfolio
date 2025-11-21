@@ -96,7 +96,7 @@ const ResumeSection = () => {
             </div>
             <h3 className="text-4xl font-bold text-gray-900 mb-4">My Resume</h3>
             <p className="text-gray-600 max-w-xl text-lg">
-              A snapshot of my academic excellence, technical expertise, and project history. 
+              A one page condensed version of me. 
             </p>
           </div>
           
