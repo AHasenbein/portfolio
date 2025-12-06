@@ -3,10 +3,13 @@ import bowieImg from './assets/bowieForum.png';
 import particlesImg from './assets/particles.png';
 import lepusImg from './assets/lepus.png';
 import sand from  './assets/sand.png';
+import lockedBuds from  './assets/lockedBuds.png';
+
+
 
 const PROJECTS_DATA = [
   {
-    id: 1,
+    id: 4,
     title: "Bowie Forum",
     tech: "React, MongoDB, Modern Deployment",
     // 2. Use the imported variable, not a string
@@ -28,6 +31,14 @@ const PROJECTS_DATA = [
     tech: "Python, Data Visualization, Risk Management",
     image: lepusImg,
     link: "https://lepusanalytics.com/",
+    description: "Based on experience..."
+  },
+  {
+    id: 1,
+    title: "Locked Buds",
+    tech: "Data Science, API Integration, Algorithms",
+    image: lockedBuds,
+    link: "https://lockedbuds.com/",
     description: "Based on experience..."
   },
   // {
