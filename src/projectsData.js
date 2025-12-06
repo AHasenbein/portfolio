@@ -9,6 +9,14 @@ import lockedBuds from  './assets/lockedBuds.png';
 
 const PROJECTS_DATA = [
   {
+    id: 1,
+    title: "Locked Buds",
+    tech: "Data Science, API Integration, Algorithms",
+    image: lockedBuds,
+    link: "https://lockedbuds.com/",
+    description: "Based on experience..."
+  },
+  {
     id: 4,
     title: "Bowie Forum",
     tech: "React, MongoDB, Modern Deployment",
@@ -31,14 +39,6 @@ const PROJECTS_DATA = [
     tech: "Python, Data Visualization, Risk Management",
     image: lepusImg,
     link: "https://lepusanalytics.com/",
-    description: "Based on experience..."
-  },
-  {
-    id: 1,
-    title: "Locked Buds",
-    tech: "Data Science, API Integration, Algorithms",
-    image: lockedBuds,
-    link: "https://lockedbuds.com/",
     description: "Based on experience..."
   },
   // {
