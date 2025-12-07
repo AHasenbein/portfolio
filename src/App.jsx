@@ -92,122 +92,141 @@ const StickyNavbar = () => {
   );
 };
 
-// --- COMPONENT: RESEARCH SECTION (NEW) ---
 const ResearchSection = () => {
-  return (
-    <section id="research" className="py-24 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
-      
-      {/* Background Ambience - "Cyber/AI" feel */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        
-        {/* Header */}
-        <div className="mb-16 border-l-4 border-indigo-500 pl-6">
-            <div className="flex items-center gap-3 text-indigo-400 mb-2">
-                <Microscope size={24} />
-                <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
-                Hyperoptimization of AI-Based <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
-                    Quadratic Equation Predictors
-                </span>
-            </h2>
-            <p className="text-slate-400 max-w-2xl text-lg">
-                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
-            </p>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 mb-16">
-            
-            {/* Left Column: Technical Description */}
-            <div className="space-y-8">
-                <div className="prose prose-invert">
-                    <p className="text-lg leading-relaxed text-slate-300">
-                        This project explored how to hyper-optimize artificial intelligence-based quadratic predictors to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
-                    </p>
+    
+    // Helper Component for the Images to maintain Aspect Ratio and fix cropping
+    const AspectRatioImage = ({ src, alt, title, description, icon: Icon }) => {
+        return (
+            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-xl transition-all duration-300 hover:border-indigo-500">
+                
+                {/* Fixed Top Title Bar */}
+                <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                        <Icon size={20} className="text-indigo-400" />
+                        <span className="text-sm font-extrabold tracking-widest text-white uppercase">{title}</span>
+                    </div>
                 </div>
 
-                {/* Technical Details Grid */}
-                <div className="grid sm:grid-cols-2 gap-4">
-                    {/* Card 1: Architectures */}
-                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
-                        <Network className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
-                        <h4 className="font-bold text-white mb-2">Model Structures</h4>
-                        <p className="text-sm text-slate-400">
+                {/* Image Container that forces the aspect ratio and pushes the image down */}
+                <div 
+                    className="w-full relative pt-16" /* Added pt-16 (or higher, e.g., pt-20) to push the image below the title bar */
+                    style={{ paddingBottom: '75%' /* Adjust this percentage to match your image's ideal aspect ratio */ }}
+                >
+                    <img 
+                        src={src} 
+                        alt={alt} 
+                        // Key fix: absolute inset-0, h-full, w-full, object-contain
+                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]" 
+                    />
+                </div>
+
+                {/* Permanent Bottom Description */}
+                <div className="p-5 border-t border-slate-700 bg-slate-900/80">
+                    <p className="text-sm text-slate-400">{description}</p>
+                </div>
+            </div>
+        );
+    };
+
+    return (
+        <section id="research" className="py-32 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
+            
+            {/* Background Ambience */}
+            <div className="absolute top-0 left-1/2 w-[900px] h-[600px] bg-indigo-600/10 rounded-full blur-[150px] -translate-x-1/2 -mt-24 pointer-events-none"></div>
+            <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto px-8 relative z-10">
+                
+                {/* 🧪 Top Section: Header & Intro */}
+                <div className="flex flex-col md:flex-row gap-20 mb-20 items-start">
+                    <div className="flex-1 max-w-lg">
+                        <div className="flex items-center gap-3 text-indigo-400 mb-4">
+                            <Microscope size={24} />
+                            <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                            Hyperoptimization of AI-Based <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+                                Quadratic Equation Predictors
+                            </span>
+                        </h2>
+                    </div>
+                    <div className="flex-1 pt-4">
+                        <div className="prose prose-invert prose-lg text-slate-400">
+                            <p className="text-xl">
+                                This project explored how to **hyper-optimize artificial intelligence-based quadratic predictors** to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
+                            </p>
+                            <p className="text-lg border-l-4 border-indigo-500 pl-6 italic text-slate-500 mt-6">
+                                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* 📈 Middle Section: Visual Data (Images now fixed) */}
+                <div className="grid lg:grid-cols-2 gap-10 mb-20">
+                    
+                    <AspectRatioImage
+                        src={researchDiagram} 
+                        alt="Model Topology" 
+                        title="NETWORK ARCHITECTURE"
+                        description="Visualizing the model structure and neuron repersentation."
+                        icon={Layers}
+                    />
+                    
+                    <AspectRatioImage
+                        src={researchGraph} 
+                        alt="Optimization Graph" 
+                        title="PERFORMANCE ANALYSIS"
+                        description="Convergence rates and loss reduction over training epochs."
+                        icon={LineChart}
+                    />
+
+                </div>
+
+                {/* ⚙️ Bottom Section: Technical Detail Cards (Grid) */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    {/* Card 1 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Model Structures</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
                             Evaluated distinct ANN topologies, aggressively varying node density and layer depth to identify the optimal configuration for quadratic convergence.
                         </p>
                     </div>
 
-                    {/* Card 2: Training Data */}
-                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
-                        <Database className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
-                        <h4 className="font-bold text-white mb-2">Training Data</h4>
-                        <p className="text-sm text-slate-400">
+                    {/* Card 2 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Database className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Training Data</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
                             Generated massive synthetic datasets of coefficients (a, b, c) paired with ground-truth roots, specifically targeting edge cases and complex roots to ensure robust generalization.
                         </p>
                     </div>
 
-                    {/* Card 3: Optimization */}
-                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
-                        <Zap className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
-                        <h4 className="font-bold text-white mb-2">Hyperoptimization</h4>
-                        <p className="text-sm text-slate-400">
+                    {/* Card 3 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Hyperoptimization</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
                             Systematic tuning of Learning Rates, Batch Sizes, and Dropout rates to prevent overfitting while maximizing the speed of the predictive engine.
                         </p>
                     </div>
 
-                    {/* Card 4: Results */}
-                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
-                        <LineChart className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
-                        <h4 className="font-bold text-white mb-2">Outcome</h4>
-                        <p className="text-sm text-slate-400">
+                    {/* Card 4 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Outcome</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
                             Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
                         </p>
                     </div>
+
                 </div>
             </div>
-
-            {/* Right Column: Visuals / Images */}
-            <div className="flex flex-col gap-6">
-                
-                {/* IMAGE SLOT 1: Model Architecture Diagram */}
-                <div className="group relative w-full h-64 bg-slate-800 rounded-xl border-2 border-dashed border-slate-600 flex items-center justify-center overflow-hidden hover:border-indigo-500 transition-colors">
-                    
-                     <img src={researchDiagram} alt="Model Topology" className="w-full h-full object-cover" /> 
-                    
-                    <div className="text-center p-6 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <Layers className="mx-auto mb-2 text-slate-400" size={32} />
-                        <p className="text-slate-300 font-mono text-sm font-bold">Image Slot 1: Network Topology</p>
-                        <p className="text-xs text-slate-500 mt-2">Upload a diagram showing your Node/Layer structure here.</p>
-                    </div>
-                </div>
-
-                {/* IMAGE SLOT 2: Data/Graphs */}
-                <div className="group relative w-full h-64 bg-slate-800 rounded-xl border-2 border-dashed border-slate-600 flex items-center justify-center overflow-hidden hover:border-indigo-500 transition-colors">
-                    
-                    <img src={researchGraph} alt="Optimization Graph" className="w-full h-full object-cover" /> 
-
-                    <div className="text-center p-6 opacity-60 group-hover:opacity-100 transition-opacity">
-                        <LineChart className="mx-auto mb-2 text-slate-400" size={32} />
-                        <p className="text-slate-300 font-mono text-sm font-bold">Image Slot 2: Performance Graph</p>
-                        <p className="text-xs text-slate-500 mt-2">Upload a chart showing loss reduction or accuracy over time.</p>
-                    </div>
-                </div>
-                
-                {/* Caption Area */}
-                <p className="text-sm text-slate-500 italic text-center">
-                    Visual representation of the hyperparameter tuning process and resulting model architecture.
-                </p>
-
-            </div>
-        </div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 // --- COMPONENT: RESUME SECTION ---
