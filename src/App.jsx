@@ -154,7 +154,7 @@ const ResearchSection = () => {
                     <div className="flex-1 pt-4">
                         <div className="prose prose-invert prose-lg text-slate-400">
                             <p className="text-xl">
-                                This project explored how to **hyper-optimize artificial intelligence-based quadratic predictors** to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
+                                This project explored how to hyper-optimize artificial intelligence-based quadratic predictorsto achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
                             </p>
                             <p className="text-lg border-l-4 border-indigo-500 pl-6 italic text-slate-500 mt-6">
                                 Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
