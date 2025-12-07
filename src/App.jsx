@@ -11,8 +11,15 @@ import {
   Database,
   Layout,
   GraduationCap,
-  FileText, // Added
-  Download  // Added
+  FileText, 
+  Download,
+  // New Imports for Research Section
+  Brain,
+  Network,
+  Zap,
+  LineChart,
+  Layers,
+  Microscope
 } from 'lucide-react';
 
 // Assuming ParticleBackground is correctly implemented and works
@@ -24,8 +31,11 @@ import PROJECTS_DATA from './projectsData';
 // ==========================================
 // 1. PUT YOUR RESUME FILES HERE
 // ==========================================
- import resumeImg from './assets/resumeImg.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
- import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+import resumeImg from './assets/resumeImg.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+
+import researchGraph from './assets/aiGraphs.png';
+import researchDiagram from './assets/aiScript.jpg';
 
 // FOR NOW, I am using placeholders so the code doesn't crash when you copy-paste.
 // REPLACE these variables with the imports above when you are ready.
@@ -73,6 +83,7 @@ const StickyNavbar = () => {
           <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
           <a href="#skills" className="hover:text-indigo-600 transition-colors">Skills</a>
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
+          <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
           <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
@@ -81,7 +92,125 @@ const StickyNavbar = () => {
   );
 };
 
-// --- COMPONENT: RESUME SECTION (NEW) ---
+// --- COMPONENT: RESEARCH SECTION (NEW) ---
+const ResearchSection = () => {
+  return (
+    <section id="research" className="py-24 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
+      
+      {/* Background Ambience - "Cyber/AI" feel */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[100px] -mr-32 -mt-32 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[100px] -ml-32 -mb-32 pointer-events-none"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <div className="mb-16 border-l-4 border-indigo-500 pl-6">
+            <div className="flex items-center gap-3 text-indigo-400 mb-2">
+                <Microscope size={24} />
+                <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white leading-tight mb-4">
+                Hyperoptimization of AI-Based <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+                    Quadratic Equation Predictors
+                </span>
+            </h2>
+            <p className="text-slate-400 max-w-2xl text-lg">
+                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
+            </p>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-12 mb-16">
+            
+            {/* Left Column: Technical Description */}
+            <div className="space-y-8">
+                <div className="prose prose-invert">
+                    <p className="text-lg leading-relaxed text-slate-300">
+                        This project explored how to hyper-optimize artificial intelligence-based quadratic predictors to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
+                    </p>
+                </div>
+
+                {/* Technical Details Grid */}
+                <div className="grid sm:grid-cols-2 gap-4">
+                    {/* Card 1: Architectures */}
+                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
+                        <Network className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
+                        <h4 className="font-bold text-white mb-2">Model Structures</h4>
+                        <p className="text-sm text-slate-400">
+                            Evaluated distinct ANN topologies, aggressively varying node density and layer depth to identify the optimal configuration for quadratic convergence.
+                        </p>
+                    </div>
+
+                    {/* Card 2: Training Data */}
+                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
+                        <Database className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
+                        <h4 className="font-bold text-white mb-2">Training Data</h4>
+                        <p className="text-sm text-slate-400">
+                            Generated massive synthetic datasets of coefficients (a, b, c) paired with ground-truth roots, specifically targeting edge cases and complex roots to ensure robust generalization.
+                        </p>
+                    </div>
+
+                    {/* Card 3: Optimization */}
+                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
+                        <Zap className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
+                        <h4 className="font-bold text-white mb-2">Hyperoptimization</h4>
+                        <p className="text-sm text-slate-400">
+                            Systematic tuning of Learning Rates, Batch Sizes, and Dropout rates to prevent overfitting while maximizing the speed of the predictive engine.
+                        </p>
+                    </div>
+
+                    {/* Card 4: Results */}
+                    <div className="bg-slate-800/50 p-5 rounded-lg border border-slate-700 hover:border-indigo-500/50 transition-colors group">
+                        <LineChart className="text-indigo-400 mb-3 group-hover:scale-110 transition-transform" size={24} />
+                        <h4 className="font-bold text-white mb-2">Outcome</h4>
+                        <p className="text-sm text-slate-400">
+                            Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            {/* Right Column: Visuals / Images */}
+            <div className="flex flex-col gap-6">
+                
+                {/* IMAGE SLOT 1: Model Architecture Diagram */}
+                <div className="group relative w-full h-64 bg-slate-800 rounded-xl border-2 border-dashed border-slate-600 flex items-center justify-center overflow-hidden hover:border-indigo-500 transition-colors">
+                    
+                     <img src={researchDiagram} alt="Model Topology" className="w-full h-full object-cover" /> 
+                    
+                    <div className="text-center p-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <Layers className="mx-auto mb-2 text-slate-400" size={32} />
+                        <p className="text-slate-300 font-mono text-sm font-bold">Image Slot 1: Network Topology</p>
+                        <p className="text-xs text-slate-500 mt-2">Upload a diagram showing your Node/Layer structure here.</p>
+                    </div>
+                </div>
+
+                {/* IMAGE SLOT 2: Data/Graphs */}
+                <div className="group relative w-full h-64 bg-slate-800 rounded-xl border-2 border-dashed border-slate-600 flex items-center justify-center overflow-hidden hover:border-indigo-500 transition-colors">
+                    
+                    <img src={researchGraph} alt="Optimization Graph" className="w-full h-full object-cover" /> 
+
+                    <div className="text-center p-6 opacity-60 group-hover:opacity-100 transition-opacity">
+                        <LineChart className="mx-auto mb-2 text-slate-400" size={32} />
+                        <p className="text-slate-300 font-mono text-sm font-bold">Image Slot 2: Performance Graph</p>
+                        <p className="text-xs text-slate-500 mt-2">Upload a chart showing loss reduction or accuracy over time.</p>
+                    </div>
+                </div>
+                
+                {/* Caption Area */}
+                <p className="text-sm text-slate-500 italic text-center">
+                    Visual representation of the hyperparameter tuning process and resulting model architecture.
+                </p>
+
+            </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// --- COMPONENT: RESUME SECTION ---
 const ResumeSection = () => {
   return (
     <section id="resume" className="py-28 px-6 bg-gray-50 relative overflow-hidden border-t border-gray-200">
@@ -133,18 +262,11 @@ const ResumeSection = () => {
 
             {/* The Image itself */}
             <div className="relative bg-gray-50 overflow-hidden">
-                {/* Make sure your PNG is High Resolution (at least 2000px wide) 
-                   so it looks crisp on retina displays 
-                */}
                 <img 
                   src={RESUME_PREVIEW_IMAGE} 
                   alt="Alexander Hasenbein Resume" 
                   className="w-full h-auto block hover:opacity-95 transition-opacity"
                 />
-                
-                {/* Hover Overlay Tip */}
-                <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/5 transition-colors pointer-events-none flex items-center justify-center opacity-0 group-hover:opacity-100">
-                </div>
             </div>
           </div>
         </div>
@@ -369,7 +491,10 @@ const App = () => {
           </div>
         </section>
 
-        {/* NEW RESUME SECTION */}
+        {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
+        <ResearchSection />
+
+        {/* RESUME SECTION */}
         <ResumeSection />
 
         {/* CONTACT SECTION */}
