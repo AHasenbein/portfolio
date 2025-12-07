@@ -31,7 +31,7 @@ import PROJECTS_DATA from './projectsData';
 // ==========================================
 // 1. PUT YOUR RESUME FILES HERE
 // ==========================================
-import resumeImg from './assets/resumeImg.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
+import resumeImg from './assets/HasenbeinResumePhoto.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 
 import researchGraph from './assets/aiGraphs.png';
