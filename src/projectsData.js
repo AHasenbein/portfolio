@@ -10,6 +10,22 @@ import lockedBuds from  './assets/lockedBuds.png';
 const PROJECTS_DATA = [
   {
     id: 1,
+    title: "Lepus Analytics",
+    tech: "Python, Data Visualization, Risk Management",
+    image: lepusImg,
+    link: "https://lepusanalytics.com/",
+    description: "Based on experience..."
+  },
+  {
+    id: 2,
+    title: "Particles Interlinked",
+    tech: "Next.js, React, Three.js, Node.js",
+    image: particlesImg,
+    link: "https://particlesv1.netlify.app/",
+    description: "Developed an interactive..."
+  },
+  {
+    id: 3,
     title: "Locked Buds",
     tech: "Data Science, API Integration, Algorithms",
     image: lockedBuds,
@@ -25,22 +41,8 @@ const PROJECTS_DATA = [
     link: "https://bowieforum.com/",
     description: "Designed and deployed..."
   },
-  {
-    id: 2,
-    title: "Particles Interlinked",
-    tech: "Next.js, React, Three.js, Node.js",
-    image: particlesImg,
-    link: "https://particlesv1.netlify.app/",
-    description: "Developed an interactive..."
-  },
-  {
-    id: 3,
-    title: "Lepus Analytics",
-    tech: "Python, Data Visualization, Risk Management",
-    image: lepusImg,
-    link: "https://lepusanalytics.com/",
-    description: "Based on experience..."
-  },
+
+
   // {
   //   id: 4,
   //   title: "Sandwhich Hero",

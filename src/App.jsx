@@ -222,7 +222,6 @@ const ResearchSection = () => {
                             Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
                         </p>
                     </div>
-
                 </div>
             </div>
         </section>
