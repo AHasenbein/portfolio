@@ -145,19 +145,19 @@ const ResearchSection = () => {
                             <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                            Hyperoptimization of AI-Based <br />
+                            Hyperparameter Optimization for <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
-                                Quadratic Equation Predictors
+                                Small Neural Networks
                             </span>
                         </h2>
                     </div>
                     <div className="flex-1 pt-4">
                         <div className="prose prose-invert prose-lg text-slate-400">
                             <p className="text-xl">
-                                This project explored how to hyper-optimize artificial intelligence-based quadratic predictors to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
+                                I'm investigating what makes small neural networks work best when approximating mathematical functions. Using quadratic equation root prediction as my testbed, I built a hyperparameter optimization framework that compares Grid Search, Random Search, and Bayesian Optimization with Optuna. The research explores architecture choices, training strategies, and the tradeoffs between accuracy, model size, and training time to produce practical guidelines for optimizing small ML models.
                             </p>
                             <p className="text-lg border-l-4 border-indigo-500 pl-6 italic text-slate-500 mt-6">
-                                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
+                                Finding optimal configurations and practical insights for small neural networks on mathematical problems through systematic hyperparameter optimization.
                             </p>
                         </div>
                     </div>
@@ -170,7 +170,7 @@ const ResearchSection = () => {
                         src={researchDiagram} 
                         alt="Model Topology" 
                         title="NETWORK ARCHITECTURE"
-                        description="Visualizing the model structure and neuron repersentation."
+                        description="Comparing different architecture configurations across the hyperparameter search space, evaluating depth vs width trade-offs and activation function performance."
                         icon={Layers}
                     />
                     
@@ -178,7 +178,7 @@ const ResearchSection = () => {
                         src={researchGraph} 
                         alt="Optimization Graph" 
                         title="PERFORMANCE ANALYSIS"
-                        description="Convergence rates and loss reduction over training epochs."
+                        description="Optimization convergence plots, Pareto frontier visualization for multi-objective trade-offs, and hyperparameter importance analysis across search strategies."
                         icon={LineChart}
                     />
 
@@ -190,36 +190,36 @@ const ResearchSection = () => {
                     {/* Card 1 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
                         <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Model Structures</h4>
+                        <h4 className="font-bold text-white mb-3 text-xl">Optimization Framework</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Evaluated distinct ANN topologies, aggressively varying node density and layer depth to identify the optimal configuration for quadratic convergence.
+                            Systematic search space covering architecture (layers, sizes, activations), training (learning rates, optimizers, batch sizes), and regularization hyperparameters. Comparing Grid Search, Random Search, and Bayesian Optimization (Optuna with TPE) with multi-objective optimization for Pareto frontiers.
                         </p>
                     </div>
 
                     {/* Card 2 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
                         <Database className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Training Data</h4>
+                        <h4 className="font-bold text-white mb-3 text-xl">Systematic Experimentation</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Generated massive synthetic datasets of coefficients (a, b, c) paired with ground-truth roots, specifically targeting edge cases and complex roots to ensure robust generalization.
+                            Architecture studies comparing depth vs width trade-offs and activation functions. Training studies evaluating optimizers, learning rate schedules, and batch size effects. Efficiency studies exploring model compression and speed vs accuracy trade-offs across varying dataset sizes and distributions.
                         </p>
                     </div>
 
                     {/* Card 3 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Hyperoptimization</h4>
+                        <Brain className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Results Analysis</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Systematic tuning of Learning Rates, Batch Sizes, and Dropout rates to prevent overfitting while maximizing the speed of the predictive engine.
+                            Optimization results dashboard with hyperparameter importance analysis. Pareto frontier visualization for multi-objective trade-offs. Convergence plots comparing optimization methods. Comprehensive error analysis by root type and edge cases, with statistical significance testing.
                         </p>
                     </div>
 
                     {/* Card 4 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Outcome</h4>
+                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Practical Insights</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
+                            Derived recommendations and best practices: optimal architecture configurations for target accuracy levels, trade-off curves mapping accuracy vs model size and speed, and guidelines for optimizing small ML models on mathematical problems. Framework applicable to similar optimization challenges.
                         </p>
                     </div>
                 </div>
