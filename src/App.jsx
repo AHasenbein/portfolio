@@ -481,10 +481,7 @@ const Footer = () => (
         <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
         <h4 className="text-xl text-gray-200 mb-2">System Status: <span className="text-green-400">Online</span></h4>
         <div className="text-sm text-gray-600 mb-8 space-y-1">
-          <p> User: Alexander Hasenbein</p>
-          <p> Location: Austin, TX</p>
-          <p> Scroll_Depth: 100%</p>
-          <p> Secret_Protocol: Initiated...</p>
+          <p> Made by: Alexander Hasenbein</p>
         </div>
         <div className="flex justify-center space-x-4 mb-6">
             <a href={`mailto:${PORTFOLIO_DATA.email}`} className="text-gray-400 hover:text-indigo-400 transition-colors">
