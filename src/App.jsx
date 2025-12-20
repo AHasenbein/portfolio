@@ -643,7 +643,7 @@ const App = () => {
               LinkedIn Profile
             </a>
           </div>
-          {/* <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p> */} //phone
+          {/* <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p> //phone */}
         </section>
 
       </main>
