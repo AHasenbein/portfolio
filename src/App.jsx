@@ -19,12 +19,7 @@ import {
   Zap,
   LineChart,
   Layers,
-  Microscope,
-  ChevronLeft,
-  ChevronRight,
-  Search,
-  Target,
-  BarChart3
+  Microscope
 } from 'lucide-react';
 
 // Assuming ParticleBackground is correctly implemented and works
@@ -39,13 +34,8 @@ import PROJECTS_DATA from './projectsData';
 import resumeImg from './assets/HasenbeinResumePhoto.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 
-import research1 from './assets/researchPhotos/research1.png';
-import research2 from './assets/researchPhotos/research2.png';
-import research3 from './assets/researchPhotos/research3.png';
-import research4 from './assets/researchPhotos/research4.png';
-import research5 from './assets/researchPhotos/research5.png';
-import research6 from './assets/researchPhotos/research6.png';
-import research7 from './assets/researchPhotos/research7.png';
+import researchGraph from './assets/aiGraphs.png';
+import researchDiagram from './assets/aiScript.jpg';
 
 // FOR NOW, I am using placeholders so the code doesn't crash when you copy-paste.
 // REPLACE these variables with the imports above when you are ready.
@@ -103,238 +93,134 @@ const StickyNavbar = () => {
 };
 
 const ResearchSection = () => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true);
     
-    const carouselImages = [
-        { src: research1, alt: "Research Image 1" },
-        { src: research2, alt: "Research Image 2" },
-        { src: research3, alt: "Research Image 3" },
-        { src: research4, alt: "Research Image 4" },
-        { src: research5, alt: "Research Image 5" },
-        { src: research6, alt: "Research Image 6" },
-        { src: research7, alt: "Research Image 7" }
-    ];
+    // Helper Component for the Images to maintain Aspect Ratio and fix cropping
+    const AspectRatioImage = ({ src, alt, title, description, icon: Icon }) => {
+        return (
+            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-xl transition-all duration-300 hover:border-indigo-500">
+                
+                {/* Fixed Top Title Bar */}
+                <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
+                    <div className="flex items-center gap-3">
+                        <Icon size={20} className="text-indigo-400" />
+                        <span className="text-sm font-extrabold tracking-widest text-white uppercase">{title}</span>
+                    </div>
+                </div>
 
-    // Auto-advance carousel
-    useEffect(() => {
-        if (!isAutoPlaying) return;
-        
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
-        }, 5000);
+                {/* Image Container that forces the aspect ratio and pushes the image down */}
+                <div 
+                    className="w-full relative pt-16" /* Added pt-16 (or higher, e.g., pt-20) to push the image below the title bar */
+                    style={{ paddingBottom: '75%' /* Adjust this percentage to match your image's ideal aspect ratio */ }}
+                >
+                    <img 
+                        src={src} 
+                        alt={alt} 
+                        // Key fix: absolute inset-0, h-full, w-full, object-contain
+                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]" 
+                    />
+                </div>
 
-        return () => clearInterval(interval);
-    }, [isAutoPlaying, carouselImages.length]);
-
-    const goToNext = () => {
-        setIsAutoPlaying(false);
-        setCurrentImageIndex((prev) => (prev + 1) % carouselImages.length);
-    };
-
-    const goToPrevious = () => {
-        setIsAutoPlaying(false);
-        setCurrentImageIndex((prev) => (prev - 1 + carouselImages.length) % carouselImages.length);
+                {/* Permanent Bottom Description */}
+                <div className="p-5 border-t border-slate-700 bg-slate-900/80">
+                    <p className="text-sm text-slate-400">{description}</p>
+                </div>
+            </div>
+        );
     };
 
     return (
-        <section id="research" className="py-24 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
+        <section id="research" className="py-32 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
+            
             {/* Background Ambience */}
             <div className="absolute top-0 left-1/2 w-[900px] h-[600px] bg-indigo-600/10 rounded-full blur-[150px] -translate-x-1/2 -mt-24 pointer-events-none"></div>
             <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-8 relative z-10">
                 
-                {/* Header */}
-                <div className="mb-12">
-                    <div className="flex items-center gap-3 text-indigo-400 mb-4">
-                        <Microscope size={20} />
-                        <span className="font-bold tracking-widest text-xs uppercase">Behrend Honors Research</span>
+                {/* 🧪 Top Section: Header & Intro */}
+                <div className="flex flex-col md:flex-row gap-20 mb-20 items-start">
+                    <div className="flex-1 max-w-lg">
+                        <div className="flex items-center gap-3 text-indigo-400 mb-4">
+                            <Microscope size={24} />
+                            <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
+                        </div>
+                        <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
+                            Hyperoptimization of AI-Based <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+                                Quadratic Equation Predictors
+                            </span>
+                        </h2>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-white leading-tight mb-4">
-                        Neural Network Hyperparameter Optimization
-                        <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
-                            for Mathematical Function Approximation
-                        </span>
-                    </h2>
-                    <p className="text-slate-400 text-lg">Optimizing Small Neural Networks for Quadratic Root Prediction</p>
+                    <div className="flex-1 pt-4">
+                        <div className="prose prose-invert prose-lg text-slate-400">
+                            <p className="text-xl">
+                                This project explored how to hyper-optimize artificial intelligence-based quadratic predictors to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
+                            </p>
+                            <p className="text-lg border-l-4 border-indigo-500 pl-6 italic text-slate-500 mt-6">
+                                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
+                            </p>
+                        </div>
+                    </div>
                 </div>
 
-                {/* Main Content Grid */}
-                <div className="grid lg:grid-cols-3 gap-8 mb-12">
+                {/* 📈 Middle Section: Visual Data (Images now fixed) */}
+                <div className="grid lg:grid-cols-2 gap-10 mb-20">
                     
-                    {/* Left Column - Description & Research Question */}
-                    <div className="lg:col-span-1 space-y-6">
-                        <div>
-                            <p className="text-slate-300 leading-relaxed">
-                                A research project investigating optimal hyperparameter configurations for small neural networks applied to mathematical function approximation. Using quadratic root prediction as a case study, it evaluates architectures, training strategies, and optimization techniques to find minimal architectures that achieve high accuracy while maintaining efficiency.
-                            </p>
-                        </div>
-                        
-                        <div className="bg-gradient-to-br from-slate-800/80 to-slate-800/40 border border-slate-700 rounded-xl p-5">
-                            <p className="text-sm font-semibold text-indigo-400 mb-2">Research Question</p>
-                            <p className="text-slate-200 italic text-sm leading-relaxed">
-                                "What are the optimal hyperparameters for neural networks approximating mathematical functions, and what practical insights can we derive for similar problems?"
-                            </p>
-                        </div>
+                    <AspectRatioImage
+                        src={researchDiagram} 
+                        alt="Model Topology" 
+                        title="NETWORK ARCHITECTURE"
+                        description="Visualizing the model structure and neuron repersentation."
+                        icon={Layers}
+                    />
+                    
+                    <AspectRatioImage
+                        src={researchGraph} 
+                        alt="Optimization Graph" 
+                        title="PERFORMANCE ANALYSIS"
+                        description="Convergence rates and loss reduction over training epochs."
+                        icon={LineChart}
+                    />
 
-                        <div className="bg-slate-800/50 border border-slate-700 rounded-xl p-5">
-                            <div className="flex items-center gap-2 mb-3">
-                                <Code2 className="text-indigo-400" size={20} />
-                                <h4 className="font-bold text-white text-sm">Technologies</h4>
-                            </div>
-                            <p className="text-slate-300 text-sm leading-relaxed">
-                                PyTorch • Optuna • PyQt6 • Matplotlib • NumPy • pandas • scikit-learn • SciPy
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Middle Column - Image Carousel */}
-                    <div className="lg:col-span-2">
-                        <div className="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-800/50 shadow-2xl">
-                            <div className="relative aspect-[4/3] bg-slate-900/50">
-                                <img 
-                                    src={carouselImages[currentImageIndex].src}
-                                    alt={carouselImages[currentImageIndex].alt}
-                                    className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-700"
-                                />
-                                
-                                {/* Navigation Buttons */}
-                                <button
-                                    onClick={goToPrevious}
-                                    className="absolute left-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-slate-900 backdrop-blur-sm text-white p-2 rounded-full border border-slate-700 hover:border-indigo-500 transition-all duration-300 z-10 shadow-lg"
-                                    aria-label="Previous image"
-                                >
-                                    <ChevronLeft size={20} />
-                                </button>
-                                <button
-                                    onClick={goToNext}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 bg-slate-900/90 hover:bg-slate-900 backdrop-blur-sm text-white p-2 rounded-full border border-slate-700 hover:border-indigo-500 transition-all duration-300 z-10 shadow-lg"
-                                    aria-label="Next image"
-                                >
-                                    <ChevronRight size={20} />
-                                </button>
-
-                                {/* Image Counter & Dots */}
-                                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-                                    <div className="bg-slate-900/90 backdrop-blur-sm text-white px-3 py-1.5 rounded-full border border-slate-700 text-xs font-medium">
-                                        {currentImageIndex + 1} / {carouselImages.length}
-                                    </div>
-                                    <div className="flex gap-1.5">
-                                        {carouselImages.map((_, idx) => (
-                                            <button
-                                                key={idx}
-                                                onClick={() => {
-                                                    setIsAutoPlaying(false);
-                                                    setCurrentImageIndex(idx);
-                                                }}
-                                                className={`h-1.5 rounded-full transition-all duration-300 ${
-                                                    idx === currentImageIndex 
-                                                        ? 'w-6 bg-indigo-400' 
-                                                        : 'w-1.5 bg-slate-600 hover:bg-slate-500'
-                                                }`}
-                                                aria-label={`Go to image ${idx + 1}`}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-                {/* Features Grid */}
-                <div className="grid md:grid-cols-3 gap-6 mb-12">
-                    <div className="bg-slate-800/30 border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/50 hover:border-indigo-500/50 transition-all duration-300">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-indigo-500/20 rounded-lg">
-                                <Search className="text-indigo-400" size={20} />
-                            </div>
-                            <h4 className="font-bold text-white">Optimization</h4>
-                        </div>
-                        <ul className="space-y-2 text-slate-300 text-sm">
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Bayesian Optimization (Optuna) with TPE</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Random Search baseline</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Multi-objective Pareto analysis</span>
-                            </li>
-                        </ul>
+                {/* ⚙️ Bottom Section: Technical Detail Cards (Grid) */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    
+                    {/* Card 1 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Model Structures</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                            Evaluated distinct ANN topologies, aggressively varying node density and layer depth to identify the optimal configuration for quadratic convergence.
+                        </p>
                     </div>
 
-                    <div className="bg-slate-800/30 border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/50 hover:border-indigo-500/50 transition-all duration-300">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-indigo-500/20 rounded-lg">
-                                <BarChart3 className="text-indigo-400" size={20} />
-                            </div>
-                            <h4 className="font-bold text-white">Analysis</h4>
-                        </div>
-                        <ul className="space-y-2 text-slate-300 text-sm">
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Real-time progress tracking</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Hyperparameter importance</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Interactive 2D/3D graphs</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Error analysis & metrics</span>
-                            </li>
-                        </ul>
+                    {/* Card 2 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Database className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Training Data</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                            Generated massive synthetic datasets of coefficients (a, b, c) paired with ground-truth roots, specifically targeting edge cases and complex roots to ensure robust generalization.
+                        </p>
                     </div>
 
-                    <div className="bg-slate-800/30 border border-slate-700/50 rounded-xl p-6 hover:bg-slate-800/50 hover:border-indigo-500/50 transition-all duration-300">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="p-2 bg-indigo-500/20 rounded-lg">
-                                <Layout className="text-indigo-400" size={20} />
-                            </div>
-                            <h4 className="font-bold text-white">GUI Application</h4>
-                        </div>
-                        <ul className="space-y-2 text-slate-300 text-sm">
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Configurable data generation</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Real-time optimization</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>Results visualization</span>
-                            </li>
-                            <li className="flex items-start gap-2">
-                                <span className="text-indigo-400 mt-0.5">•</span>
-                                <span>CSV & PDF export</span>
-                            </li>
-                        </ul>
+                    {/* Card 3 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Hyperoptimization</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                            Systematic tuning of Learning Rates, Batch Sizes, and Dropout rates to prevent overfitting while maximizing the speed of the predictive engine.
+                        </p>
                     </div>
-                </div>
 
-                {/* Research Impact */}
-                <div className="bg-gradient-to-r from-indigo-500/10 via-blue-500/10 to-indigo-500/10 border border-indigo-500/20 rounded-xl p-6">
-                    <div className="flex items-start gap-4">
-                        <div className="p-2 bg-indigo-500/20 rounded-lg flex-shrink-0">
-                            <Target className="text-indigo-400" size={24} />
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-white mb-2">Research Impact</h4>
-                            <p className="text-slate-300 leading-relaxed">
-                                Provides actionable insights for optimizing small ML models on mathematical function approximation tasks, including optimal architecture recommendations, understanding of critical hyperparameters, and practical guidelines for balancing accuracy and efficiency.
-                            </p>
-                        </div>
+                    {/* Card 4 */}
+                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
+                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Outcome</h4>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                            Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -481,7 +367,10 @@ const Footer = () => (
         <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
         <h4 className="text-xl text-gray-200 mb-2">System Status: <span className="text-green-400">Online</span></h4>
         <div className="text-sm text-gray-600 mb-8 space-y-1">
-          <p> Made by: Alexander Hasenbein</p>
+          <p> User: Alexander Hasenbein</p>
+          <p> Location: Austin, TX</p>
+          <p> Scroll_Depth: 100%</p>
+          <p> Secret_Protocol: Initiated...</p>
         </div>
         <div className="flex justify-center space-x-4 mb-6">
             <a href={`mailto:${PORTFOLIO_DATA.email}`} className="text-gray-400 hover:text-indigo-400 transition-colors">
@@ -643,7 +532,7 @@ const App = () => {
               LinkedIn Profile
             </a>
           </div>
-          {/* <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p> //phone */}
+          <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p>
         </section>
 
       </main>
