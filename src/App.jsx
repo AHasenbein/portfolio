@@ -10,6 +10,7 @@ import {
   Cpu,
   Database,
   Layout,
+  Briefcase,
   GraduationCap,
   FileText, 
   Download,
@@ -57,8 +58,7 @@ const PORTFOLIO_DATA = {
   ],
 
   email: "hasenbeinalex@gmail.com",
-  linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
-  phone: "(412) 353-9375" 
+  linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/"
 };
 
 // --- COMPONENT: STICKY NAVBAR ---
@@ -83,6 +83,7 @@ const StickyNavbar = () => {
           <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
           <a href="#skills" className="hover:text-indigo-600 transition-colors">Skills</a>
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
+          <a href="#work" className="hover:text-indigo-600 transition-colors">Work Experience</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
           <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
@@ -228,6 +229,122 @@ const ResearchSection = () => {
     );
 };
 
+const WorkExperienceSection = () => {
+  const responsibilities = [
+    "Developing new and modifying existing web-based dashboards for the process engineering team.",
+    "Integrating charts, tables, and filters for dynamic data visualization.",
+    "Designing and implementing new dashboard pages using C# (ASP.NET).",
+    "Conducting unit testing and assisting with user acceptance testing.",
+    "Documenting all changes and providing a user guide for new features.",
+    "Writing and optimizing SQL queries for data retrieval and aggregation.",
+    "Continuously reviewing current architecture and identifying opportunities for improvement.",
+    "Providing progress reports to the Process Engineering Team."
+  ];
+
+  return (
+    <section id="work" className="py-32 bg-white border-y border-gray-200 relative overflow-hidden">
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-indigo-100/70 blur-3xl pointer-events-none"></div>
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="mb-12">
+          <div className="flex items-center gap-3 text-indigo-600 mb-3">
+            <Briefcase size={24} />
+            <span className="font-extrabold tracking-wider text-sm uppercase">Work Experience</span>
+          </div>
+          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Professional Impact</h3>
+          <p className="text-lg text-gray-600 max-w-3xl">
+            Building production-facing tools for engineering teams and turning process data into usable decisions.
+          </p>
+        </div>
+
+        <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 shadow-2xl shadow-indigo-100/40 p-8 md:p-10">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-indigo-100 pb-8 mb-8">
+            <div>
+              <h4 className="text-2xl md:text-3xl font-bold text-gray-900">Software Engineering Intern - Process Engineering Team</h4>
+              <p className="text-indigo-700 font-semibold text-lg mt-2">Flex</p>
+              <p className="text-gray-600 mt-2">Official title: Process Engineering Intern</p>
+            </div>
+            <div className="inline-flex items-center rounded-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold self-start">
+              Starting May 2026
+            </div>
+          </div>
+
+          <p className="text-gray-700 font-semibold mb-4">Key responsibilities include:</p>
+          <div className="grid md:grid-cols-2 gap-4">
+            {responsibilities.map((item, idx) => (
+              <div key={idx} className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white/80 p-4 shadow-sm">
+                <span className="mt-2 h-2.5 w-2.5 rounded-full bg-indigo-600 flex-shrink-0"></span>
+                <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const HackathonSection = () => {
+  return (
+    <section id="hackathon" className="py-24 px-6 bg-gray-50 border-t border-gray-200">
+      <div className="max-w-7xl mx-auto">
+        <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-8 md:p-10 shadow-xl">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+            <div>
+              <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
+              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">1st Place in AI Agents and LLMs</h4>
+              <p className="text-gray-700 mt-2">ACM x Behrend hosted by Penn State University</p>
+            </div>
+            <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
+              Built solo in 10 hours
+            </div>
+          </div>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            I built and shipped <span className="font-semibold">DevCord Multi-Agent</span>, a multi-agent AI orchestration platform through Discord that converts natural language requests into fully managed software execution pipelines. It coordinates specialized bots (Manager, Dev, QA, Command) across channels and task threads, with scoped handoffs for planning, implementation, review, and follow-up.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-5">
+            Built with strict TypeScript, Discord.js, and OpenRouter, it supports modular model routing, autonomous project kickoff, thread-based task decomposition, persistent state tracking, pause/resume/cancel controls, continuous status reporting, and voice-first workflows with local Whisper STT plus TTS playback.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-4 mb-6">
+            <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
+              <p className="text-sm text-gray-700">Join a Discord call and ask a bot questions about your live project context.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
+              <p className="text-sm text-gray-700">Watch agents ask each other for help when the question is outside their domain.</p>
+            </div>
+            <div className="rounded-xl border border-gray-200 bg-white p-4">
+              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
+              <p className="text-sm text-gray-700">Get high-quality, cross-agent feedback while one bot is building.</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://www.youtube.com/watch?v=mAAqsrhs_VM"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-5 py-3 font-semibold hover:bg-gray-700 transition-colors"
+            >
+              Watch Demo Video
+            </a>
+            <a
+              href="https://github.com/AHasenbein/Devcord-Multi-Agent"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-900 px-5 py-3 font-semibold hover:bg-gray-100 transition-colors"
+            >
+              View GitHub Repository
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- COMPONENT: RESUME SECTION ---
 const ResumeSection = () => {
   return (
@@ -239,7 +356,7 @@ const ResumeSection = () => {
           <div>
             <div className="flex items-center gap-2 text-indigo-600 mb-2">
                 <FileText size={24} />
-                <span className="font-extrabold tracking-wider text-sm uppercase">Professional Experience</span>
+                <span className="font-extrabold tracking-wider text-sm uppercase">Resume</span>
             </div>
             <h3 className="text-4xl font-bold text-gray-900 mb-4">My Resume</h3>
             <p className="text-gray-600 max-w-xl text-lg">
@@ -469,6 +586,9 @@ const App = () => {
           </div>
         </section>
 
+        {/* HACKATHON SECTION */}
+        <HackathonSection />
+
         {/* PROJECTS SECTION */}
         <section id="projects" className="py-28 bg-white border-y border-gray-200 shadow-inner">
           <div className="max-w-7xl mx-auto px-6">
@@ -509,6 +629,9 @@ const App = () => {
           </div>
         </section>
 
+        {/* WORK EXPERIENCE SECTION */}
+        <WorkExperienceSection />
+
         {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
         <ResearchSection />
 
@@ -519,7 +642,7 @@ const App = () => {
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
           <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
           <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            I live over the summer in Austin, Texas and go to school in Erie, PA
+            I live over the summer in Austin, Texas and go to school in University Park, PA.
             Whether you have a question or just want to say hi, I'll try my best to get back to you!
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
@@ -532,7 +655,6 @@ const App = () => {
               LinkedIn Profile
             </a>
           </div>
-          <p className="mt-12 text-gray-500 text-lg font-mono">Work Phone: {PORTFOLIO_DATA.phone}</p>
         </section>
 
       </main>

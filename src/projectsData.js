@@ -33,14 +33,14 @@ const PROJECTS_DATA = [
     link: "https://bowieforum.com/",
     description: "Bowie Forum, Lead Developer and Database Manager As the Lead Developer and Database Manager for Bowie Forum, I designed and deployed a complete student forum platform. I was responsible for the full stack, managing both the frontend UI and the backend infrastructure, which I built using React, MongoDB, and modern deployment tools to ensure scalability and reliability. I successfully increased user activity on the site by an astounding 3000% in just three months."
   },
-  {
-    id: 4,
-    title: "Locked Buds",
-    tech: "Data Science, API Integration, Algorithms",
-    image: lockedBuds,
-    link: "https://lockedbuds.com/",
-    description: "I designed and developed Locked Buds as a dynamic academic management application. The system allows users to input their grades and schedule, which is then processed to provide a comprehensive, point-based overview of their academic standing. It tracks essential metrics like percent completion of necessary tasks and overall schedule adherence. The final academic score is calculated using a proprietary algorithm that synthesizes all user-provided data into a single, actionable performance metric."
-  },
+  // {
+  //   id: 4,
+  //   title: "Locked Buds",
+  //   tech: "Data Science, API Integration, Algorithms",
+  //   image: lockedBuds,
+  //   link: "https://lockedbuds.com/",
+  //   description: "I designed and developed Locked Buds as a dynamic academic management application. The system allows users to input their grades and schedule, which is then processed to provide a comprehensive, point-based overview of their academic standing. It tracks essential metrics like percent completion of necessary tasks and overall schedule adherence. The final academic score is calculated using a proprietary algorithm that synthesizes all user-provided data into a single, actionable performance metric."
+  // },
   
 
 
