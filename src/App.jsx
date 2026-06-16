@@ -37,6 +37,13 @@ import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFT
 
 import researchGraph from './assets/aiGraphs.png';
 import researchDiagram from './assets/aiScript.jpg';
+import research1 from './assets/researchPhotos/research1.png';
+import research2 from './assets/researchPhotos/research2.png';
+import research3 from './assets/researchPhotos/research3.png';
+import research4 from './assets/researchPhotos/research4.png';
+import research5 from './assets/researchPhotos/research5.png';
+import research6 from './assets/researchPhotos/research6.png';
+import research7 from './assets/researchPhotos/research7.png';
 
 // FOR NOW, I am using placeholders so the code doesn't crash when you copy-paste.
 // REPLACE these variables with the imports above when you are ready.
@@ -94,6 +101,23 @@ const StickyNavbar = () => {
 };
 
 const ResearchSection = () => {
+    const researchCarouselImages = [
+        research1,
+        research2,
+        research3,
+        research4,
+        research5,
+        research6,
+        research7
+    ];
+    const [activeResearchImage, setActiveResearchImage] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length);
+        }, 3500);
+        return () => clearInterval(interval);
+    }, [researchCarouselImages.length]);
     
     // Helper Component for the Images to maintain Aspect Ratio and fix cropping
     const AspectRatioImage = ({ src, alt, title, description, icon: Icon }) => {
@@ -146,7 +170,7 @@ const ResearchSection = () => {
                             <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                            Hyperoptimization of AI-Based <br />
+                            Hyperoptimization of Artificial Intelligence-Based <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
                                 Quadratic Equation Predictors
                             </span>
@@ -164,25 +188,74 @@ const ResearchSection = () => {
                     </div>
                 </div>
 
-                {/* 📈 Middle Section: Visual Data (Images now fixed) */}
-                <div className="grid lg:grid-cols-2 gap-10 mb-20">
-                    
-                    <AspectRatioImage
-                        src={researchDiagram} 
-                        alt="Model Topology" 
-                        title="NETWORK ARCHITECTURE"
-                        description="Visualizing the model structure and neuron repersentation."
-                        icon={Layers}
-                    />
-                    
-                    <AspectRatioImage
-                        src={researchGraph} 
-                        alt="Optimization Graph" 
-                        title="PERFORMANCE ANALYSIS"
-                        description="Convergence rates and loss reduction over training epochs."
-                        icon={LineChart}
-                    />
+                {/* 📈 Middle Section: Research Photo Carousel */}
+                <div className="mb-20">
+                    <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-xl transition-all duration-300 hover:border-indigo-500">
+                        <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
+                            <div className="flex items-center gap-3">
+                                <Layers size={20} className="text-indigo-400" />
+                                <span className="text-sm font-extrabold tracking-widest text-white uppercase">RESEARCH CAROUSEL</span>
+                            </div>
+                            <span className="text-xs text-slate-300 font-mono">
+                                {activeResearchImage + 1} / {researchCarouselImages.length}
+                            </span>
+                        </div>
 
+                        <div className="w-full relative pt-16" style={{ paddingBottom: '56.25%' }}>
+                            {researchCarouselImages.map((image, idx) => (
+                                <img
+                                    key={idx}
+                                    src={image}
+                                    alt={`Research visual ${idx + 1}`}
+                                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
+                                        idx === activeResearchImage ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                />
+                            ))}
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setActiveResearchImage((prev) =>
+                                    prev === 0 ? researchCarouselImages.length - 1 : prev - 1
+                                )
+                            }
+                            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 px-3 py-2 rounded-full bg-slate-900/70 text-white text-lg hover:bg-indigo-600 transition-colors"
+                            aria-label="Previous research image"
+                        >
+                            ‹
+                        </button>
+                        <button
+                            type="button"
+                            onClick={() =>
+                                setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length)
+                            }
+                            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 px-3 py-2 rounded-full bg-slate-900/70 text-white text-lg hover:bg-indigo-600 transition-colors"
+                            aria-label="Next research image"
+                        >
+                            ›
+                        </button>
+
+                        <div className="p-5 border-t border-slate-700 bg-slate-900/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <p className="text-sm text-slate-400">
+                                Research visuals from my honors project workflow, experimentation, and results.
+                            </p>
+                            <div className="flex items-center gap-2">
+                                {researchCarouselImages.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        type="button"
+                                        onClick={() => setActiveResearchImage(idx)}
+                                        className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                                            idx === activeResearchImage ? 'bg-indigo-400' : 'bg-slate-600 hover:bg-slate-400'
+                                        }`}
+                                        aria-label={`Go to research image ${idx + 1}`}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 {/* ⚙️ Bottom Section: Technical Detail Cards (Grid) */}
