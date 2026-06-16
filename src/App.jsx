@@ -35,8 +35,6 @@ import PROJECTS_DATA from './projectsData';
 import resumeImg from './assets/HasenbeinResumePhoto.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
 
-import researchGraph from './assets/aiGraphs.png';
-import researchDiagram from './assets/aiScript.jpg';
 import research1 from './assets/researchPhotos/research1.png';
 import research2 from './assets/researchPhotos/research2.png';
 import research3 from './assets/researchPhotos/research3.png';
@@ -118,41 +116,6 @@ const ResearchSection = () => {
         }, 3500);
         return () => clearInterval(interval);
     }, [researchCarouselImages.length]);
-    
-    // Helper Component for the Images to maintain Aspect Ratio and fix cropping
-    const AspectRatioImage = ({ src, alt, title, description, icon: Icon }) => {
-        return (
-            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-xl transition-all duration-300 hover:border-indigo-500">
-                
-                {/* Fixed Top Title Bar */}
-                <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
-                    <div className="flex items-center gap-3">
-                        <Icon size={20} className="text-indigo-400" />
-                        <span className="text-sm font-extrabold tracking-widest text-white uppercase">{title}</span>
-                    </div>
-                </div>
-
-                {/* Image Container that forces the aspect ratio and pushes the image down */}
-                <div 
-                    className="w-full relative pt-16" /* Added pt-16 (or higher, e.g., pt-20) to push the image below the title bar */
-                    style={{ paddingBottom: '75%' /* Adjust this percentage to match your image's ideal aspect ratio */ }}
-                >
-                    <img 
-                        src={src} 
-                        alt={alt} 
-                        // Key fix: absolute inset-0, h-full, w-full, object-contain
-                        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-[1.02]" 
-                    />
-                </div>
-
-                {/* Permanent Bottom Description */}
-                <div className="p-5 border-t border-slate-700 bg-slate-900/80">
-                    <p className="text-sm text-slate-400">{description}</p>
-                </div>
-            </div>
-        );
-    };
-
     return (
         <section id="research" className="py-32 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
             
@@ -185,74 +148,67 @@ const ResearchSection = () => {
                                 Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
                             </p>
                         </div>
-                    </div>
-                </div>
+                        <div className="mt-8 w-full max-w-3xl">
+                            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800/90 shadow-xl transition-all duration-300 hover:border-indigo-500">
+                                <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
+                                    <div className="flex items-center gap-3">
+                                        <Layers size={20} className="text-indigo-400" />
+                                        <span className="text-sm font-extrabold tracking-widest text-white uppercase">Research Carousel</span>
+                                    </div>
+                                    <span className="text-xs text-slate-300 font-mono">
+                                        {activeResearchImage + 1}/{researchCarouselImages.length}
+                                    </span>
+                                </div>
 
-                {/* 📈 Middle Section: Research Photo Carousel */}
-                <div className="mb-20">
-                    <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-xl transition-all duration-300 hover:border-indigo-500">
-                        <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
-                            <div className="flex items-center gap-3">
-                                <Layers size={20} className="text-indigo-400" />
-                                <span className="text-sm font-extrabold tracking-widest text-white uppercase">RESEARCH CAROUSEL</span>
-                            </div>
-                            <span className="text-xs text-slate-300 font-mono">
-                                {activeResearchImage + 1} / {researchCarouselImages.length}
-                            </span>
-                        </div>
+                                <div className="w-full relative pt-16" style={{ paddingBottom: '58%' }}>
+                                    {researchCarouselImages.map((image, idx) => (
+                                        <img
+                                            key={idx}
+                                            src={image}
+                                            alt={`Research visual ${idx + 1}`}
+                                            className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
+                                                idx === activeResearchImage ? 'opacity-100' : 'opacity-0'
+                                            }`}
+                                        />
+                                    ))}
+                                </div>
 
-                        <div className="w-full relative pt-16" style={{ paddingBottom: '56.25%' }}>
-                            {researchCarouselImages.map((image, idx) => (
-                                <img
-                                    key={idx}
-                                    src={image}
-                                    alt={`Research visual ${idx + 1}`}
-                                    className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
-                                        idx === activeResearchImage ? 'opacity-100' : 'opacity-0'
-                                    }`}
-                                />
-                            ))}
-                        </div>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setActiveResearchImage((prev) =>
+                                            prev === 0 ? researchCarouselImages.length - 1 : prev - 1
+                                        )
+                                    }
+                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-900/80 text-white text-lg hover:bg-indigo-600 transition-colors"
+                                    aria-label="Previous research image"
+                                >
+                                    ‹
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() =>
+                                        setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length)
+                                    }
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-900/80 text-white text-lg hover:bg-indigo-600 transition-colors"
+                                    aria-label="Next research image"
+                                >
+                                    ›
+                                </button>
 
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setActiveResearchImage((prev) =>
-                                    prev === 0 ? researchCarouselImages.length - 1 : prev - 1
-                                )
-                            }
-                            className="absolute left-4 top-1/2 -translate-y-1/2 z-20 px-3 py-2 rounded-full bg-slate-900/70 text-white text-lg hover:bg-indigo-600 transition-colors"
-                            aria-label="Previous research image"
-                        >
-                            ‹
-                        </button>
-                        <button
-                            type="button"
-                            onClick={() =>
-                                setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length)
-                            }
-                            className="absolute right-4 top-1/2 -translate-y-1/2 z-20 px-3 py-2 rounded-full bg-slate-900/70 text-white text-lg hover:bg-indigo-600 transition-colors"
-                            aria-label="Next research image"
-                        >
-                            ›
-                        </button>
-
-                        <div className="p-5 border-t border-slate-700 bg-slate-900/80 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                            <p className="text-sm text-slate-400">
-                                Research visuals from my honors project workflow, experimentation, and results.
-                            </p>
-                            <div className="flex items-center gap-2">
-                                {researchCarouselImages.map((_, idx) => (
-                                    <button
-                                        key={idx}
-                                        type="button"
-                                        onClick={() => setActiveResearchImage(idx)}
-                                        className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                                            idx === activeResearchImage ? 'bg-indigo-400' : 'bg-slate-600 hover:bg-slate-400'
-                                        }`}
-                                        aria-label={`Go to research image ${idx + 1}`}
-                                    />
-                                ))}
+                                <div className="px-5 py-4 border-t border-slate-700 bg-slate-900/80 flex items-center justify-center gap-2">
+                                    {researchCarouselImages.map((_, idx) => (
+                                        <button
+                                            key={idx}
+                                            type="button"
+                                            onClick={() => setActiveResearchImage(idx)}
+                                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                                                idx === activeResearchImage ? 'bg-indigo-400' : 'bg-slate-600 hover:bg-slate-400'
+                                            }`}
+                                            aria-label={`Go to research image ${idx + 1}`}
+                                        />
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
