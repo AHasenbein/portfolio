@@ -63,7 +63,8 @@ const PORTFOLIO_DATA = {
   ],
 
   email: "hasenbeinalex@gmail.com",
-  linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/"
+  linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
+  github: "https://github.com/AHasenbein"
 };
 
 // --- COMPONENT: STICKY NAVBAR ---
@@ -525,7 +526,7 @@ const Footer = () => (
             <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
                 <Linkedin size={20} />
             </a>
-            <a href="#" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-200 transition-colors">
+            <a href={PORTFOLIO_DATA.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-200 transition-colors">
                 <Github size={20} />
             </a>
         </div>
