@@ -90,7 +90,7 @@ const StickyNavbar = () => {
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
           <a href="#work" className="hover:text-indigo-600 transition-colors">Work Experience</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
-          {/* <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a> */}
+          <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
       </div>
@@ -657,8 +657,8 @@ const App = () => {
         {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
         <ResearchSection />
 
-        {/* RESUME SECTION — dormant for now; uncomment to restore */}
-        {/* <ResumeSection /> */}
+        {/* RESUME SECTION */}
+        <ResumeSection />
 
         {/* CONTACT SECTION */}
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
