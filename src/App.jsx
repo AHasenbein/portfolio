@@ -15,7 +15,6 @@ import {
   FileText, 
   Download,
   // New Imports for Research Section
-  Brain,
   Network,
   Zap,
   LineChart,
@@ -52,7 +51,7 @@ const RESUME_PDF_LINK = resumePDF;
 const PORTFOLIO_DATA = {
   name: "ALEXANDER HASENBEIN",
   title: "Full Stack Developer & Data Scientist",
-  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics) and a Division III athlete. I am well versed in multiple programming languages, frameworks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
+  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics). I am well versed in multiple programming languages, frameworks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
 
   // Categorized skills from your resume
   skills: [
@@ -91,7 +90,7 @@ const StickyNavbar = () => {
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
           <a href="#work" className="hover:text-indigo-600 transition-colors">Work Experience</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
-          <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
+          {/* <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a> */}
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
       </div>
@@ -143,10 +142,7 @@ const ResearchSection = () => {
                     <div className="flex-1 pt-4">
                         <div className="prose prose-invert prose-lg text-slate-400">
                             <p className="text-xl">
-                                This project explored how to hyper-optimize artificial intelligence-based quadratic predictors to achieve faster and more stable solutions to nonlinear mathematical problems. Traditional iterative methods can be computationally expensive; by integrating optimization processes directly with custom model architectures, I successfully reduced inference latency while maintaining high-precision roots.
-                            </p>
-                            <p className="text-lg border-l-4 border-indigo-500 pl-6 italic text-slate-500 mt-6">
-                                Pushing the limits of precision in real-time nonlinear computation through custom neural architecture search and algorithmic tuning.
+                                A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and interactive dashboards for visualizing training progress, hyperparameter importance, and trial history. The goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
                             </p>
                         </div>
                         <div className="mt-8 w-full max-w-3xl">
@@ -220,37 +216,37 @@ const ResearchSection = () => {
                     
                     {/* Card 1 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Model Structures</h4>
+                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Multi-method Optimization</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Evaluated distinct ANN topologies, aggressively varying node density and layer depth to identify the optimal configuration for quadratic convergence.
+                            Compared Bayesian optimization (Optuna), random search, and multi-objective Pareto search to analyze accuracy-efficiency trade-offs in neural network design.
                         </p>
                     </div>
 
                     {/* Card 2 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
                         <Database className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Training Data</h4>
+                        <h4 className="font-bold text-white mb-3 text-xl">Balanced Experimental Design</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Generated massive synthetic datasets of coefficients (a, b, c) paired with ground-truth roots, specifically targeting edge cases and complex roots to ensure robust generalization.
+                            Built a stratified data generation pipeline to eliminate root-type sampling bias, a common blind spot in synthetic math datasets.
                         </p>
                     </div>
 
                     {/* Card 3 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Hyperoptimization</h4>
+                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Rigorous Evaluation</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Systematic tuning of Learning Rates, Batch Sizes, and Dropout rates to prevent overfitting while maximizing the speed of the predictive engine.
+                            Assessed models across MAE, RMSE, R², per-root-type error breakdowns, parameter count, and inference speed, not just raw accuracy.
                         </p>
                     </div>
 
                     {/* Card 4 */}
                     <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Outcome</h4>
+                        <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
+                        <h4 className="font-bold text-white mb-3 text-xl">Interpretable Results</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Created a highly stable model capable of real-time predictions, outperforming standard iterative baselines in specific high-load scenarios.
+                            Created real-time dashboards for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box.
                         </p>
                     </div>
                 </div>
@@ -261,14 +257,10 @@ const ResearchSection = () => {
 
 const WorkExperienceSection = () => {
   const responsibilities = [
-    "Developing new and modifying existing web-based dashboards for the process engineering team.",
-    "Integrating charts, tables, and filters for dynamic data visualization.",
-    "Designing and implementing new dashboard pages using C# (ASP.NET).",
-    "Conducting unit testing and assisting with user acceptance testing.",
-    "Documenting all changes and providing a user guide for new features.",
-    "Writing and optimizing SQL queries for data retrieval and aggregation.",
-    "Continuously reviewing current architecture and identifying opportunities for improvement.",
-    "Providing progress reports to the Process Engineering Team."
+    "Built and deployed a full ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, delivering 90% accuracy and sub-30-second precision on time predictions.",
+    "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
+    "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led two HQ-wide projects, overseeing version control, monitoring PRs handled, and roadmaps.",
+    "Created data analysis apps built in Python using Plotly, Pandas, and Pydoc that reduced team-wide analysis time by 10%."
   ];
 
   return (
@@ -289,16 +281,16 @@ const WorkExperienceSection = () => {
         <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 shadow-2xl shadow-indigo-100/40 p-8 md:p-10">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-indigo-100 pb-8 mb-8">
             <div>
-              <h4 className="text-2xl md:text-3xl font-bold text-gray-900">Software Engineering Intern - Process Engineering Team</h4>
-              <p className="text-indigo-700 font-semibold text-lg mt-2">Flex</p>
-              <p className="text-gray-600 mt-2">Official title: Process Engineering Intern</p>
+              <h4 className="text-2xl md:text-3xl font-bold text-gray-900">Software Engineering and Machine Learning Intern</h4>
+              <p className="text-indigo-700 font-semibold text-lg mt-2">Flex · Process Engineering Team</p>
+              <p className="text-gray-600 mt-2">Austin, TX</p>
             </div>
             <div className="inline-flex items-center rounded-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold self-start">
-              Starting May 2026
+              May 2026 - Present
             </div>
           </div>
 
-          <p className="text-gray-700 font-semibold mb-4">Key responsibilities include:</p>
+          <p className="text-gray-700 font-semibold mb-4">Key contributions:</p>
           <div className="grid md:grid-cols-2 gap-4">
             {responsibilities.map((item, idx) => (
               <div key={idx} className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white/80 p-4 shadow-sm">
@@ -665,8 +657,8 @@ const App = () => {
         {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
         <ResearchSection />
 
-        {/* RESUME SECTION */}
-        <ResumeSection />
+        {/* RESUME SECTION — dormant for now; uncomment to restore */}
+        {/* <ResumeSection /> */}
 
         {/* CONTACT SECTION */}
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
