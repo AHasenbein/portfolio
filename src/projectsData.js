@@ -22,16 +22,16 @@ const PROJECTS_DATA = [
     tech: "Next.js, React, Three.js, Node.js",
     image: particlesImg,
     link: "https://particlesv1.netlify.app/",
-    description: "Particlesv1 (Particles Interlinked) I created Particles Interlinked, an interactive web simulation. This project allows users to visualize and manipulate complex particle systems, demonstrating my capabilities in front-end development and computational visualization."
+    description: "Developed a real-time particle simulation system using Three.js with WebGL rendering, applying physics concepts such as particle interactions, gravitational attraction, and collision detection implemented efficiently in JavaScript. Integrated performance monitoring and leveraged WebGL for hardware-accelerated graphics, increasing FPS by 22% consistently. Switched from a 2D to a 3D library to make graphics more dynamic while optimizing for faster rendering than the 2D approach."
   },
   {
     id: 3,
-    title: "Bowie Forum",
-    tech: "React, MongoDB, Modern Deployment",
+    title: "BowieForum",
+    tech: "React, MongoDB, SQL, Node.js",
     // 2. Use the imported variable, not a string
     image: bowieImg, 
     link: "https://bowieforum.com/",
-    description: "Bowie Forum, Lead Developer and Database Manager As the Lead Developer and Database Manager for Bowie Forum, I designed and deployed a complete student forum platform. I was responsible for the full stack, managing both the frontend UI and the backend infrastructure, which I built using React, MongoDB, and modern deployment tools to ensure scalability and reliability. I successfully increased user activity on the site by an astounding 3000% in just three months."
+    description: "Designed and deployed a student forum platform with 150+ users. Utilized optimized SQL queries to reduce server load and pagination to efficiently load posts, cutting strain on both client and server while keeping low latency. Developed the React frontend, Node.js backend, and integrated a SQL database hosted in MongoDB."
   },
   // {
   //   id: 4,

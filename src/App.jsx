@@ -49,19 +49,22 @@ const RESUME_PDF_LINK = resumePDF;
 
 // --- RESUME DATA POPULATION ---
 const PORTFOLIO_DATA = {
-  name: "ALEXANDER HASENBEIN",
-  title: "Full Stack Developer & Data Scientist",
-  about: "I am a dual-major Honors student at Penn State Behrend (Computer Science & Mathematics). I am well versed in multiple programming languages, frameworks, data analytics, and building full scale applications. My goal is to change the world and ultimately creating something that is uniquely mine.",
+  name: "ALEX HASENBEIN",
+  title: "Full-Stack Developer & Machine Learning Engineer",
+  about: "I am a dual-major student at The Pennsylvania State University (Computer Science & Mathematics) with a Penn State Honors background. I build full-stack applications, ML pipelines, and multi-agent systems — from production analytics dashboards to research-grade evaluation frameworks. My goal is to change the world and ultimately create something that is uniquely mine.",
 
   // Categorized skills from your resume
   skills: [
-    { category: "Frontend", icon: <Layout size={20} />, items: "React, Next.js, Three.js, HTML/CSS, Tailwind" },
-    { category: "Backend", icon: <Code2 size={20} />, items: "Node.js, Java, C++, C#, Python" },
-    { category: "Data & DB", icon: <Database size={20} />, items: "MongoDB, MySQL, Web Scraping, Analytics" },
-    { category: "Tools", icon: <Cpu size={20} />, items: "Git, PyQt6, Deployment Pipelines" },
+    { category: "Languages", icon: <Code2 size={20} />, items: "Java, C++, C#, JavaScript, TypeScript, Python, SQL, Rust, VB.NET" },
+    { category: "Frameworks", icon: <Layout size={20} />, items: "React, Next.js, Node.js, Spring, ASP.NET, FastAPI, Flask, LightGBM, pandas, scikit-learn, Plotly" },
+    { category: "Tools & Tech", icon: <Cpu size={20} />, items: "Git, Docker, MongoDB, SQL Server, OpenRouter, CI/CD Pipelines" },
+    { category: "Focus Areas", icon: <Database size={20} />, items: "Full-Stack Development, Machine Learning & AI, Data Science, Backend Engineering, Multi-Agent Systems" },
   ],
 
   email: "hasenbeinalex@gmail.com",
+  phone: "(512) 962-2736",
+  website: "https://alexhasenbein.com",
+  location: "Austin, TX",
   linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
   github: "https://github.com/AHasenbein"
 };
@@ -130,7 +133,7 @@ const ResearchSection = () => {
                     <div className="flex-1 max-w-lg">
                         <div className="flex items-center gap-3 text-indigo-400 mb-4">
                             <Microscope size={24} />
-                            <span className="font-bold tracking-widest text-sm uppercase">Behrend Honors Research</span>
+                            <span className="font-bold tracking-widest text-sm uppercase">Penn State Honors Research</span>
                         </div>
                         <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
                             Hyperoptimization of Artificial Intelligence-Based <br />
@@ -256,11 +259,29 @@ const ResearchSection = () => {
 };
 
 const WorkExperienceSection = () => {
-  const responsibilities = [
-    "Built and deployed a full ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, delivering 90% accuracy and sub-30-second precision on time predictions.",
-    "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
-    "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led two HQ-wide projects, overseeing version control, monitoring PRs handled, and roadmaps.",
-    "Created data analysis apps built in Python using Plotly, Pandas, and Pydoc that reduced team-wide analysis time by 10%."
+  const experiences = [
+    {
+      title: "Software Engineering and Machine Learning Intern",
+      company: "Flex",
+      location: "Austin, TX",
+      dates: "May 2026 - Present",
+      responsibilities: [
+        "Built and deployed a full ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, delivering 90% accuracy and sub-30-second precision on time predictions.",
+        "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
+        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led two HQ-wide projects — overseeing version control, monitoring PRs handled, and roadmaps.",
+        "Created data analysis apps built in Python using Plotly, Pandas, and Pydoc that reduced team-wide analysis time by 10%."
+      ]
+    },
+    {
+      title: "Undergraduate Researcher, Honors Option",
+      company: "The Pennsylvania State University",
+      location: "Erie, PA",
+      dates: "Jan 2025 – May 2025",
+      responsibilities: [
+        "Built a hyperparameter optimization framework for neural networks predicting quadratic roots, benchmarking Bayesian optimization (Optuna), random search, and multi-objective Pareto search to quantify accuracy-efficiency tradeoffs.",
+        "Built a data pipeline and full evaluation suite (MAE, RMSE, R², per-class error, inference speed) with interactive dashboards for hyperparameter analysis and trial exploration, ensuring reproducible, interpretable results."
+      ]
+    }
   ];
 
   return (
@@ -278,27 +299,34 @@ const WorkExperienceSection = () => {
           </p>
         </div>
 
-        <div className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 shadow-2xl shadow-indigo-100/40 p-8 md:p-10">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-indigo-100 pb-8 mb-8">
-            <div>
-              <h4 className="text-2xl md:text-3xl font-bold text-gray-900">Software Engineering and Machine Learning Intern</h4>
-              <p className="text-indigo-700 font-semibold text-lg mt-2">Flex · Process Engineering Team</p>
-              <p className="text-gray-600 mt-2">Austin, TX</p>
-            </div>
-            <div className="inline-flex items-center rounded-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold self-start">
-              May 2026 - Present
-            </div>
-          </div>
-
-          <p className="text-gray-700 font-semibold mb-4">Key contributions:</p>
-          <div className="grid md:grid-cols-2 gap-4">
-            {responsibilities.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white/80 p-4 shadow-sm">
-                <span className="mt-2 h-2.5 w-2.5 rounded-full bg-indigo-600 flex-shrink-0"></span>
-                <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
+        <div className="space-y-8">
+          {experiences.map((exp, expIdx) => (
+            <div
+              key={expIdx}
+              className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 shadow-2xl shadow-indigo-100/40 p-8 md:p-10"
+            >
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-indigo-100 pb-8 mb-8">
+                <div>
+                  <h4 className="text-2xl md:text-3xl font-bold text-gray-900">{exp.title}</h4>
+                  <p className="text-indigo-700 font-semibold text-lg mt-2">{exp.company}</p>
+                  <p className="text-gray-600 mt-2">{exp.location}</p>
+                </div>
+                <div className="inline-flex items-center rounded-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold self-start">
+                  {exp.dates}
+                </div>
               </div>
-            ))}
-          </div>
+
+              <p className="text-gray-700 font-semibold mb-4">Key contributions:</p>
+              <div className={`grid gap-4 ${exp.responsibilities.length > 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
+                {exp.responsibilities.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white/80 p-4 shadow-sm">
+                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-indigo-600 flex-shrink-0"></span>
+                    <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -313,8 +341,8 @@ const HackathonSection = () => {
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
             <div>
               <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
-              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">1st Place in AI Agents and LLMs</h4>
-              <p className="text-gray-700 mt-2">ACM x Behrend hosted by Penn State University</p>
+              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">1st Place, AI Agents & LLMs</h4>
+              <p className="text-gray-700 mt-2">Penn State Hackathon</p>
             </div>
             <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
               Built solo in 10 hours
@@ -322,10 +350,10 @@ const HackathonSection = () => {
           </div>
 
           <p className="text-gray-700 leading-relaxed mb-4">
-            I built and shipped <span className="font-semibold">DevCord Multi-Agent</span>, a multi-agent AI orchestration platform through Discord that converts natural language requests into fully managed software execution pipelines. It coordinates specialized bots (Manager, Dev, QA, Command) across channels and task threads, with scoped handoffs for planning, implementation, review, and follow-up.
+            <span className="font-semibold">DevCord – Multi Agent AI Orchestration Platform.</span> Architected specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
           </p>
           <p className="text-gray-700 leading-relaxed mb-5">
-            Built with strict TypeScript, Discord.js, and OpenRouter, it supports modular model routing, autonomous project kickoff, thread-based task decomposition, persistent state tracking, pause/resume/cancel controls, continuous status reporting, and voice-first workflows with local Whisper STT plus TTS playback.
+            Implemented autonomous project kickoff, thread-based task decomposition, persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT + TTS in Discord voice channels.
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -389,7 +417,7 @@ const ResumeSection = () => {
           {/* Download Button */}
           <a 
             href={RESUME_PDF_LINK} 
-            download="Alexander_Hasenbein_Resume.pdf"
+            download="Alex_Hasenbein_Resume.pdf"
             className="flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-1 group font-medium"
           >
             <Download size={20} className="group-hover:animate-bounce" />
@@ -412,7 +440,7 @@ const ResumeSection = () => {
                 <div className="w-3 h-3 rounded-full bg-green-400 border border-green-500/20"></div>
               </div>
               <div className="text-xs text-gray-400 font-mono flex items-center gap-2 opacity-70">
-                <FileText size={12} /> Alexander_Hasenbein_Resume.pdf (Preview)
+                <FileText size={12} /> Alex_Hasenbein_Resume.pdf (Preview)
               </div>
               <div className="w-8"></div> {/* Spacer to center text */}
             </div>
@@ -421,7 +449,7 @@ const ResumeSection = () => {
             <div className="relative bg-gray-50 overflow-hidden">
                 <img 
                   src={RESUME_PREVIEW_IMAGE} 
-                  alt="Alexander Hasenbein Resume" 
+                  alt="Alex Hasenbein Resume" 
                   className="w-full h-auto block hover:opacity-95 transition-opacity"
                 />
             </div>
@@ -506,8 +534,8 @@ const Footer = () => (
         <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
         <h4 className="text-xl text-gray-200 mb-2">System Status: <span className="text-green-400">Online</span></h4>
         <div className="text-sm text-gray-600 mb-8 space-y-1">
-          <p> User: Alexander Hasenbein</p>
-          <p> Location: Austin, TX</p>
+          <p> User: Alex Hasenbein</p>
+          <p> Location: {PORTFOLIO_DATA.location}</p>
           <p> Scroll_Depth: 100%</p>
           <p> Secret_Protocol: Initiated...</p>
         </div>
@@ -523,7 +551,7 @@ const Footer = () => (
             </a>
         </div>
         <p className="text-xs text-gray-700 mt-4">
-          © {new Date().getFullYear()} Alexander Hasenbein. <br/> Built with React, Tailwind & Three.js particles.
+          © {new Date().getFullYear()} Alex Hasenbein. <br/> Built with React, Tailwind & Three.js particles.
         </p>
       </div>
     </footer>
@@ -579,14 +607,16 @@ const App = () => {
                 <GraduationCap size={28} />
                 <span className="font-extrabold tracking-wider text-sm uppercase">About Me & Education</span>
               </div>
-              <h3 className="text-4xl font-bold mb-6 text-gray-900">Penn State Behrend</h3>
+              <h3 className="text-4xl font-bold mb-6 text-gray-900">The Pennsylvania State University</h3>
+              <p className="text-indigo-700 font-semibold mb-4">University Park, PA · GPA: 3.5</p>
               <p className="text-xl text-gray-700 leading-relaxed mb-8 border-l-4 border-indigo-400 pl-4">
                 {PORTFOLIO_DATA.about}
               </p>
               <ul className="space-y-3 text-gray-600 text-lg">
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> BS: Computer Science & Mathematics (Honors)</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Graduation: Class of 2028</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> UIL Academic All-State & VEX Robotics Winner</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> B.S. Computer Science & B.S. Mathematics</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Expected Graduation: May 2028</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholarship</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Penn State Honors Program · Dean&apos;s List</li>
               </ul>
             </div>
 
@@ -663,10 +693,11 @@ const App = () => {
         {/* CONTACT SECTION */}
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
           <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-            I live over the summer in Austin, Texas and go to school in University Park, PA.
-            Whether you have a question or just want to say hi, I'll try my best to get back to you!
+          <p className="text-xl text-gray-600 mb-4 max-w-3xl mx-auto">
+            Based in Austin, TX · Studying at University Park, PA.
+            Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
           </p>
+          <p className="text-gray-500 mb-12">{PORTFOLIO_DATA.phone}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
               <Mail size={20} />
