@@ -55,9 +55,9 @@ const PORTFOLIO_DATA = {
 
   // Categorized skills from your resume
   skills: [
-    { category: "Languages", icon: <Code2 size={20} />, items: "Java, C++, C#, JavaScript, TypeScript, Python, SQL, Rust, VB.NET" },
-    { category: "Frameworks", icon: <Layout size={20} />, items: "React, Next.js, Node.js, Spring, ASP.NET, FastAPI, Flask, LightGBM, pandas, scikit-learn, Plotly" },
-    { category: "Tools & Tech", icon: <Cpu size={20} />, items: "Git, Docker, MongoDB, SQL Server, OpenRouter, CI/CD Pipelines" },
+    { category: "Languages", icon: <Code2 size={20} />, items: "Java, C++, C#, JavaScript, TypeScript, Python, SQL, VB.NET, HTML, CSS" },
+    { category: "Frameworks", icon: <Layout size={20} />, items: "React, Next.js, Express.js, Spring, ASP.NET, FastAPI, Flask, LightGBM, pandas, scikit-learn, Plotly, NumPy" },
+    { category: "Tools & Tech", icon: <Cpu size={20} />, items: "Git, Docker, MongoDB, SQL Server, Node.js, OpenRouter, CI/CD Pipelines, AWS, Azure" },
     { category: "Focus Areas", icon: <Database size={20} />, items: "Full-Stack Development, Machine Learning & AI, Data Science, Backend Engineering, Multi-Agent Systems" },
   ],
 
@@ -264,12 +264,12 @@ const WorkExperienceSection = () => {
       title: "Software Engineering and Machine Learning Intern",
       company: "Flex",
       location: "Austin, TX",
-      dates: "May 2026 - Present",
+      dates: "May 2026 - Aug 2026",
       responsibilities: [
-        "Built and deployed a full ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, delivering 90% accuracy and sub-30-second precision on time predictions.",
+        "Built and deployed an ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, achieving 90% accuracy on predictions within a 30 second window of build time.",
         "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
-        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led two HQ-wide projects — overseeing version control, monitoring PRs handled, and roadmaps.",
-        "Created data analysis apps built in Python using Plotly, Pandas, and Pydoc that reduced team-wide analysis time by 10%."
+        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led 2 HQ-wide projects, managing version control and roadmap delivery.",
+        "Built data analysis apps in Python using Plotly and Pandas, reducing analysis time by 10% against baseline (standard tools)."
       ]
     },
     {
@@ -278,7 +278,7 @@ const WorkExperienceSection = () => {
       location: "Erie, PA",
       dates: "Jan 2025 – May 2025",
       responsibilities: [
-        "Built a hyperparameter optimization framework for neural networks predicting quadratic roots, benchmarking Bayesian optimization (Optuna), random search, and multi-objective Pareto search to quantify accuracy-efficiency tradeoffs.",
+        "Built a hyperparameter optimization framework for PyTorch neural networks predicting quadratic roots, benchmarking Bayesian optimization (Optuna), random search, and multi-objective Pareto search to quantify accuracy-efficiency tradeoffs.",
         "Built a data pipeline and full evaluation suite (MAE, RMSE, R², per-class error, inference speed) with interactive dashboards for hyperparameter analysis and trial exploration, ensuring reproducible, interpretable results."
       ]
     }
@@ -342,7 +342,7 @@ const HackathonSection = () => {
             <div>
               <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
               <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">1st Place, AI Agents & LLMs</h4>
-              <p className="text-gray-700 mt-2">Penn State Hackathon</p>
+              <p className="text-gray-700 mt-2">Behrend Hackathon</p>
             </div>
             <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
               Built solo in 10 hours
@@ -350,10 +350,10 @@ const HackathonSection = () => {
           </div>
 
           <p className="text-gray-700 leading-relaxed mb-4">
-            <span className="font-semibold">DevCord – Multi Agent AI Orchestration Platform.</span> Architected specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
+            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Architected specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
           </p>
           <p className="text-gray-700 leading-relaxed mb-5">
-            Implemented autonomous project kickoff, thread-based task decomposition, persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT + TTS in Discord voice channels.
+            Implemented autonomous project kickoff, thread-based task decomposition, and persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT/TTS in Discord voice channels.
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -615,8 +615,8 @@ const App = () => {
               <ul className="space-y-3 text-gray-600 text-lg">
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> B.S. Computer Science & B.S. Mathematics</li>
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Expected Graduation: May 2028</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholarship</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Penn State Honors Program · Dean&apos;s List</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholarship · Behrend Honors Program</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Nittany AI Leadership Academy · Nittany AI ELP</li>
               </ul>
             </div>
 

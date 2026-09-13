@@ -22,7 +22,7 @@ const PROJECTS_DATA = [
     tech: "Next.js, React, Three.js, Node.js",
     image: particlesImg,
     link: "https://particlesv1.netlify.app/",
-    description: "Developed a real-time particle simulation system using Three.js with WebGL rendering, applying physics concepts such as particle interactions, gravitational attraction, and collision detection implemented efficiently in JavaScript. Integrated performance monitoring and leveraged WebGL for hardware-accelerated graphics, increasing FPS by 22% consistently. Switched from a 2D to a 3D library to make graphics more dynamic while optimizing for faster rendering than the 2D approach."
+    description: "Developed a complex real-time particle simulation system using Three.js with WebGL rendering, applying physics concepts such as particle interactions, gravitational attraction, and collision detection implemented efficiently in JavaScript. Integrated performance monitoring and leveraged WebGL for hardware-accelerated graphics rendering, increasing FPS by ~22% consistently. Migrated from a 2D to a 3D library, improving visual dynamism and rendering speed over the prior implementation."
   },
   {
     id: 3,
@@ -31,7 +31,7 @@ const PROJECTS_DATA = [
     // 2. Use the imported variable, not a string
     image: bowieImg, 
     link: "https://bowieforum.com/",
-    description: "Designed and deployed a student forum platform with 150+ users. Utilized optimized SQL queries to reduce server load and pagination to efficiently load posts, cutting strain on both client and server while keeping low latency. Developed the React frontend, Node.js backend, and integrated a SQL database hosted in MongoDB."
+    description: "Designed and deployed a student forum platform with 150+ users. Utilized optimized SQL queries to reduce server load and pagination to efficiently load posts, cutting strain on both client and server while keeping low latency. Developed the React frontend, Node.js backend, and integrated a MongoDB database. Deployed with a DevOps plan."
   },
   // {
   //   id: 4,
