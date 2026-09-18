@@ -51,7 +51,7 @@ const RESUME_PDF_LINK = resumePDF;
 const PORTFOLIO_DATA = {
   name: "ALEX HASENBEIN",
   title: "Full-Stack Developer & Machine Learning Engineer",
-  about: "I am a dual-major student at The Pennsylvania State University (Computer Science & Mathematics) with a Penn State Honors background. I build full-stack applications, ML pipelines, and multi-agent systems — from production analytics dashboards to research-grade evaluation frameworks. My goal is to change the world and ultimately create something that is uniquely mine.",
+  about: "I am a dual-major student at The Pennsylvania State University (Computer Science & Mathematics) with a completed Behrend Honors Program. I build full-stack applications, ML pipelines, and multi-agent systems, from production analytics dashboards to research-grade evaluation frameworks. My goal is to create something that truly makes peoples lives better.",
 
   // Categorized skills from your resume
   skills: [
