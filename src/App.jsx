@@ -261,15 +261,14 @@ const ResearchSection = () => {
 const WorkExperienceSection = () => {
   const experiences = [
     {
-      title: "Software Engineering and Machine Learning Intern",
+      title: "Software Engineering Intern",
       company: "Flex",
       location: "Austin, TX",
       dates: "May 2026 - Aug 2026",
       responsibilities: [
-        "Built and deployed an ML pipeline in Python (LightGBM, pandas, scikit-learn) processing 1M+ records to forecast throughput, achieving 90% accuracy on predictions within a 30 second window of build time.",
         "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
-        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Led 2 HQ-wide projects, managing version control and roadmap delivery.",
-        "Built data analysis apps in Python using Plotly and Pandas, reducing analysis time by 10% against baseline (standard tools)."
+        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Owned delivery of 2 HQ-wide projects, managing version control and roadmap tracking.",
+        "Built internal data analysis tooling in Python (Plotly, pandas) to streamline reporting workflows, reducing analysis time by 10% against baseline (timed measurement against standard tools)."
       ]
     },
     {
