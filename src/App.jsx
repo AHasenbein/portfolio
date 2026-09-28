@@ -12,8 +12,6 @@ import {
   Layout,
   Briefcase,
   GraduationCap,
-  FileText, 
-  Download,
   // New Imports for Research Section
   Network,
   Zap,
@@ -28,12 +26,6 @@ import ParticleBackground from './ParticleBackground';
 // --- IMPORT THE PROJECTS DATA ---
 import PROJECTS_DATA from './projectsData';
 
-// ==========================================
-// 1. PUT YOUR RESUME FILES HERE
-// ==========================================
-import resumeImg from './assets/HasenbeinResumePhoto.png'; // <--- UNCOMMENT THIS AFTER ADDING FILE
-import resumePDF from './assets/HasenbeinResume.pdf'; // <--- UNCOMMENT THIS AFTER ADDING FILE
-
 import research1 from './assets/researchPhotos/research1.png';
 import research2 from './assets/researchPhotos/research2.png';
 import research3 from './assets/researchPhotos/research3.png';
@@ -42,12 +34,6 @@ import research5 from './assets/researchPhotos/research5.png';
 import research6 from './assets/researchPhotos/research6.png';
 import research7 from './assets/researchPhotos/research7.png';
 
-// FOR NOW, I am using placeholders so the code doesn't crash when you copy-paste.
-// REPLACE these variables with the imports above when you are ready.
-const RESUME_PREVIEW_IMAGE = resumeImg; 
-const RESUME_PDF_LINK = resumePDF; 
-
-// --- RESUME DATA POPULATION ---
 const PORTFOLIO_DATA = {
   name: "ALEX HASENBEIN",
   title: "Full-Stack Developer & Machine Learning Engineer",
@@ -62,7 +48,6 @@ const PORTFOLIO_DATA = {
   ],
 
   email: "hasenbeinalex@gmail.com",
-  phone: "(512) 962-2736",
   website: "https://alexhasenbein.com",
   location: "Austin, TX",
   linkedin: "https://www.linkedin.com/in/alex-hasenbein-287b53325/",
@@ -93,7 +78,6 @@ const StickyNavbar = () => {
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
           <a href="#work" className="hover:text-indigo-600 transition-colors">Work Experience</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
-          <a href="#resume" className="hover:text-indigo-600 transition-colors">Resume</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
       </div>
@@ -394,72 +378,6 @@ const HackathonSection = () => {
   );
 };
 
-// --- COMPONENT: RESUME SECTION ---
-const ResumeSection = () => {
-  return (
-    <section id="resume" className="py-28 px-6 bg-gray-50 relative overflow-hidden border-t border-gray-200">
-      <div className="max-w-5xl mx-auto">
-        
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-          <div>
-            <div className="flex items-center gap-2 text-indigo-600 mb-2">
-                <FileText size={24} />
-                <span className="font-extrabold tracking-wider text-sm uppercase">Resume</span>
-            </div>
-            <h3 className="text-4xl font-bold text-gray-900 mb-4">My Resume</h3>
-            <p className="text-gray-600 max-w-xl text-lg">
-              A one page condensed version of me. 
-            </p>
-          </div>
-          
-          {/* Download Button */}
-          <a 
-            href={RESUME_PDF_LINK} 
-            download="Alex_Hasenbein_Resume.pdf"
-            className="flex items-center gap-3 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-indigo-600 transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 hover:-translate-y-1 group font-medium"
-          >
-            <Download size={20} className="group-hover:animate-bounce" />
-            <span>Download PDF</span>
-          </a>
-        </div>
-
-        {/* Resume Preview Container */}
-        <div className="relative group flex justify-center">
-          {/* Decorative backdrop glow */}
-          <div className="absolute inset-0 bg-gradient-to-b from-indigo-100 to-transparent rounded-3xl -m-4 blur-xl opacity-50"></div>
-          
-          {/* The Resume "Paper" */}
-          <div className="relative w-full max-w-4xl bg-white rounded-lg shadow-2xl overflow-hidden ring-1 ring-gray-900/5 transform transition-transform duration-500 group-hover:scale-[1.01]">
-            {/* Top Bar (Like a browser or document viewer) */}
-            <div className="h-10 bg-gray-100 border-b border-gray-200 flex items-center px-4 justify-between">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-400 border border-red-500/20"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500/20"></div>
-                <div className="w-3 h-3 rounded-full bg-green-400 border border-green-500/20"></div>
-              </div>
-              <div className="text-xs text-gray-400 font-mono flex items-center gap-2 opacity-70">
-                <FileText size={12} /> Alex_Hasenbein_Resume.pdf (Preview)
-              </div>
-              <div className="w-8"></div> {/* Spacer to center text */}
-            </div>
-
-            {/* The Image itself */}
-            <div className="relative bg-gray-50 overflow-hidden">
-                <img 
-                  src={RESUME_PREVIEW_IMAGE} 
-                  alt="Alex Hasenbein Resume" 
-                  className="w-full h-auto block hover:opacity-95 transition-opacity"
-                />
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-  );
-};
-
 // --- COMPONENT: PROJECT WINDOW MODAL ---
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -686,17 +604,13 @@ const App = () => {
         {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
         <ResearchSection />
 
-        {/* RESUME SECTION */}
-        <ResumeSection />
-
         {/* CONTACT SECTION */}
         <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
           <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
-          <p className="text-xl text-gray-600 mb-4 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
             Based in Austin, TX · Studying at University Park, PA.
-            Whether you have a question or just want to say hi, I&apos;ll try my best to get back to you!
+          
           </p>
-          <p className="text-gray-500 mb-12">{PORTFOLIO_DATA.phone}</p>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
               <Mail size={20} />
