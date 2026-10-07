@@ -73,10 +73,10 @@ const StickyNavbar = () => {
           TRY. FAIL. INNOVATE<span className="text-indigo-600">.</span>
         </span>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
-          <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
-          <a href="#skills" className="hover:text-indigo-600 transition-colors">Skills</a>
+          <a href="#about" className="hover:text-indigo-600 transition-colors">Education</a>
+          <a href="#work" className="hover:text-indigo-600 transition-colors">Professional Impact</a>
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
-          <a href="#work" className="hover:text-indigo-600 transition-colors">Work Experience</a>
+          <a href="#hackathon" className="hover:text-indigo-600 transition-colors">Hackathon</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
           <a href="#contact" className="hover:text-indigo-600 transition-colors">Contact</a>
         </div>
@@ -270,8 +270,7 @@ const WorkExperienceSection = () => {
   ];
 
   return (
-    <section id="work" className="py-32 bg-white border-y border-gray-200 relative overflow-hidden">
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[850px] h-[350px] bg-indigo-100/70 blur-3xl pointer-events-none"></div>
+    <section id="work" className="py-32 bg-gradient-to-b from-white via-indigo-50/60 to-white border-y border-gray-200 relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <div className="mb-12">
           <div className="flex items-center gap-3 text-indigo-600 mb-3">
@@ -587,8 +586,8 @@ const App = () => {
           </div>
         </section>
 
-        {/* HACKATHON SECTION */}
-        <HackathonSection />
+        {/* WORK EXPERIENCE SECTION */}
+        <WorkExperienceSection />
 
         {/* PROJECTS SECTION */}
         <section id="projects" className="py-28 bg-white border-y border-gray-200 shadow-inner">
@@ -634,8 +633,8 @@ const App = () => {
           </div>
         </section>
 
-        {/* WORK EXPERIENCE SECTION */}
-        <WorkExperienceSection />
+        {/* HACKATHON SECTION */}
+        <HackathonSection />
 
         {/* --- RESEARCH SECTION (INSERTED HERE) --- */}
         <ResearchSection />

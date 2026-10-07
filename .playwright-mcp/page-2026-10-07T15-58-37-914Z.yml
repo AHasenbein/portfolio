@@ -1,0 +1,222 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]: TRY. FAIL. INNOVATE.
+      - generic [ref=e7]:
+        - link "Education" [ref=e8] [cursor=pointer]:
+          - /url: "#about"
+        - link "Professional Impact" [ref=e9] [cursor=pointer]:
+          - /url: "#work"
+        - link "Projects" [ref=e10] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Hackathon" [ref=e11] [cursor=pointer]:
+          - /url: "#hackathon"
+        - link "Research" [ref=e12] [cursor=pointer]:
+          - /url: "#research"
+        - link "Contact" [ref=e13] [cursor=pointer]:
+          - /url: "#contact"
+  - generic [ref=e14]:
+    - generic:
+      - heading "ALEX HASENBEIN" [level=1]
+      - paragraph: Full-Stack Developer & Machine Learning Engineer
+      - generic:
+        - link "View Projects" [ref=e17] [cursor=pointer]:
+          - /url: "#projects"
+        - link "Contact Me" [ref=e18] [cursor=pointer]:
+          - /url: "#contact"
+  - main [ref=e19]:
+    - generic [ref=e21]:
+      - generic [ref=e22]:
+        - generic [ref=e23]: About Me & Education
+        - heading "The Pennsylvania State University" [level=3] [ref=e28]
+        - paragraph [ref=e29]: "University Park, PA · GPA: 3.5 / 4.0"
+        - paragraph [ref=e30]: I am a Computer Science major with a Mathematics minor at The Pennsylvania State University, and I completed the Behrend Honors Program. I build full-stack applications, ML pipelines, and multi-agent systems, from production analytics dashboards to research-grade evaluation frameworks. My goal is to create something that truly makes peoples lives better.
+        - list [ref=e31]:
+          - listitem [ref=e32]: B.S. Computer Science · Minor in Mathematics
+          - listitem [ref=e34]: "Expected Graduation: May 2028"
+          - listitem [ref=e36]: "Coursework: Data Structures & Algorithms, Discrete Mathematics, Linear Algebra, Object-Oriented Programming"
+          - listitem [ref=e38]: Commonwealth Engineering Scholar · Behrend Honors Program
+          - listitem [ref=e40]: Nittany AI Leadership Academy · Nittany AI ELP
+      - generic [ref=e42]:
+        - heading "Core Competencies" [level=3] [ref=e43]
+        - generic [ref=e44]:
+          - heading "Languages" [level=4] [ref=e51]
+          - paragraph [ref=e52]: Java, C++, C#, JavaScript, TypeScript, Python, SQL, Go, VB.NET, HTML, CSS
+        - generic [ref=e53]:
+          - heading "Frameworks" [level=4] [ref=e58]
+          - paragraph [ref=e59]: React, Next.js, Express.js, Spring, ASP.NET, FastAPI, Flask, PyTorch, LightGBM, Optuna, pandas, scikit-learn, Plotly, NumPy, Three.js, Discord.js
+        - generic [ref=e60]:
+          - heading "Tools & Tech" [level=4] [ref=e66]
+          - paragraph [ref=e67]: Git, Docker, MongoDB, SQL Server, Node.js, OpenRouter, CI/CD Pipelines, AWS, Azure
+        - generic [ref=e68]:
+          - heading "Focus Areas" [level=4] [ref=e75]
+          - paragraph [ref=e76]: Full-Stack Development, Machine Learning & AI, Data Science, Backend Engineering, Multi-Agent Systems
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - generic [ref=e80]: Work Experience
+        - heading "Professional Impact" [level=3] [ref=e85]
+        - paragraph [ref=e86]: Building production-facing tools for engineering teams and turning process data into usable decisions.
+      - generic [ref=e87]:
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - heading "Software Engineering and Machine Learning Intern" [level=4] [ref=e91]
+              - paragraph [ref=e92]: Flex
+              - paragraph [ref=e93]: Austin, TX
+            - generic [ref=e94]: May 2026 - Aug 2026
+          - paragraph [ref=e95]: "Key contributions:"
+          - generic [ref=e96]:
+            - paragraph [ref=e99]: Built a LightGBM model (pandas, scikit-learn) forecasting board build time on 1M+ records; 90% of predictions landed within 30 seconds of actual on a separate, leakage-controlled test set.
+            - paragraph [ref=e102]: Eliminated tempdb exhaustion on production datasets of 4M+ rows by parallelizing query chunking; engineered features from SQL Server views and optimized complex queries.
+            - paragraph [ref=e105]: Delivered real-time C# (ASP.NET) dashboards with dynamic charts, tables, and filters for the process engineering team, plus Python (Plotly, pandas) reporting tooling that cut weekly analysis time by 2 hours on average.
+            - paragraph [ref=e108]: "Owned delivery of 2 HQ-wide projects, managing version control and roadmap tracking: a PCN/deviation tool and a migration of ~20 daily emails into an engineering dashboard."
+        - generic [ref=e109]:
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - heading "Undergraduate Researcher, Honors Option" [level=4] [ref=e112]
+              - paragraph [ref=e113]: The Pennsylvania State University
+              - paragraph [ref=e114]: Erie, PA
+            - generic [ref=e115]: Jan 2025 – May 2025
+          - paragraph [ref=e116]: "Key contributions:"
+          - generic [ref=e117]:
+            - paragraph [ref=e120]: Cut median validation error 46.5% (p = 0.002) with Bayesian (Optuna) search versus random search in a 1,800-network PyTorch study (20 seeds x 3 methods) on quadratic-root prediction; test R² 0.986 vs 0.980 (p = 0.003).
+            - paragraph [ref=e123]: Built the framework comparing Bayesian, random, and multi-objective Pareto search, with a root-type-balanced data pipeline, an evaluation suite (MAE, RMSE, R², parameter count, inference latency), and a PyQt6 dashboard.
+            - paragraph [ref=e126]: Raised R² from near 0 to 0.98+ by restricting coefficient |a| to at least 0.5 (roots scale as 1/a), and fixed a bug that omitted the repeated-root class from validation.
+    - generic [ref=e128]:
+      - generic [ref=e129]:
+        - heading "Selected Works" [level=3] [ref=e130]
+        - paragraph [ref=e131]: A showcase of technical depth and design precision.
+        - generic [ref=e132]: // Click cards to view technical details
+      - generic [ref=e133]:
+        - generic [ref=e134] [cursor=pointer]:
+          - generic [ref=e135]:
+            - img "DevCord" [ref=e136]
+            - generic [ref=e137]: Preview Details
+          - generic [ref=e143]:
+            - heading "DevCord" [level=4] [ref=e144]
+            - paragraph [ref=e145]: TypeScript, Discord.js, OpenRouter, Whisper
+        - generic [ref=e146] [cursor=pointer]:
+          - generic [ref=e147]:
+            - img "Course Horse" [ref=e148]
+            - generic [ref=e149]: Preview Details
+          - generic [ref=e155]:
+            - heading "Course Horse" [level=4] [ref=e156]
+            - paragraph [ref=e157]: Next.js, React, TypeScript, React Flow, Gemini API, MongoDB
+        - generic [ref=e158] [cursor=pointer]:
+          - generic [ref=e159]:
+            - img "SwipeHire" [ref=e160]
+            - generic [ref=e161]: Preview Details
+          - generic [ref=e167]:
+            - heading "SwipeHire" [level=4] [ref=e168]
+            - paragraph [ref=e169]: Next.js, React, TypeScript, Tailwind CSS, Zustand, Framer Motion
+        - generic [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]:
+            - generic [ref=e172]: TrueSearch
+            - generic [ref=e174]: Preview Details
+          - generic [ref=e180]:
+            - heading "TrueSearch" [level=4] [ref=e181]
+            - paragraph [ref=e182]: TypeScript, React, MongoDB, LLM Extraction, Docker
+        - generic [ref=e183] [cursor=pointer]:
+          - generic [ref=e184]:
+            - img "Particles Interlinked" [ref=e185]
+            - generic [ref=e186]: Preview Details
+          - generic [ref=e192]:
+            - heading "Particles Interlinked" [level=4] [ref=e193]
+            - paragraph [ref=e194]: Next.js, React, Three.js, Node.js
+        - generic [ref=e195] [cursor=pointer]:
+          - generic [ref=e196]:
+            - img "BowieForum" [ref=e197]
+            - generic [ref=e198]: Preview Details
+          - generic [ref=e204]:
+            - heading "BowieForum" [level=4] [ref=e205]
+            - paragraph [ref=e206]: React, MongoDB, Node.js
+    - generic [ref=e209]:
+      - generic [ref=e210]:
+        - generic [ref=e211]:
+          - paragraph [ref=e212]: Hackathon Achievement
+          - heading "1st Place, AI Agents & LLMs" [level=4] [ref=e213]
+          - paragraph [ref=e214]: Behrend Hackathon
+        - generic [ref=e215]: Built solo in 10 hours
+      - paragraph [ref=e216]: DevCord – Multi-Agent AI Orchestration Platform. Architected four specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
+      - paragraph [ref=e217]: Implemented autonomous project kickoff, thread-based task decomposition, and persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT/TTS in Discord voice channels.
+      - generic [ref=e218]:
+        - generic [ref=e219]:
+          - paragraph [ref=e220]: Favorite Feature
+          - paragraph [ref=e221]: Join a Discord call and ask a bot questions about your live project context.
+        - generic [ref=e222]:
+          - paragraph [ref=e223]: Favorite Feature
+          - paragraph [ref=e224]: Watch agents ask each other for help when the question is outside their domain.
+        - generic [ref=e225]:
+          - paragraph [ref=e226]: Favorite Feature
+          - paragraph [ref=e227]: Get high-quality, cross-agent feedback while one bot is building.
+      - generic [ref=e228]:
+        - link "Watch Demo Video" [ref=e229] [cursor=pointer]:
+          - /url: https://www.youtube.com/watch?v=mAAqsrhs_VM
+        - link "View GitHub Repository" [ref=e230] [cursor=pointer]:
+          - /url: https://github.com/AHasenbein/Devcord-Multi-Agent
+    - generic [ref=e232]:
+      - generic [ref=e233]:
+        - generic [ref=e234]:
+          - generic [ref=e235]: Penn State Honors Research
+          - heading "Hyperoptimization of Artificial Intelligence-Based Quadratic Equation Predictors" [level=2] [ref=e241]
+        - generic [ref=e242]:
+          - paragraph [ref=e244]: A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and a PyQt6 dashboard for visualizing training progress, hyperparameter importance, and trial history. The study trained 1,800 networks (20 seeds x 3 methods x 30 trials). Bayesian (TPE) search cut median best validation error 46.5% versus random search after 30 trials (paired Wilcoxon p = 0.002), with test R² of 0.986 vs 0.980. It is a small synthetic problem, and the goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
+          - generic [ref=e246]:
+            - generic [ref=e247]:
+              - generic [ref=e248]: Research Carousel
+              - generic [ref=e254]: 1/7
+            - generic [ref=e255]:
+              - img "Research visual 1" [ref=e256]
+              - img "Research visual 2" [ref=e257]
+              - img "Research visual 3" [ref=e258]
+              - img "Research visual 4" [ref=e259]
+              - img "Research visual 5" [ref=e260]
+              - img "Research visual 6" [ref=e261]
+              - img "Research visual 7" [ref=e262]
+            - button "Previous research image" [ref=e263]: ‹
+            - button "Next research image" [ref=e264]: ›
+            - generic [ref=e265]:
+              - button "Go to research image 1" [ref=e266]
+              - button "Go to research image 2" [ref=e267]
+              - button "Go to research image 3" [ref=e268]
+              - button "Go to research image 4" [ref=e269]
+              - button "Go to research image 5" [ref=e270]
+              - button "Go to research image 6" [ref=e271]
+              - button "Go to research image 7" [ref=e272]
+      - generic [ref=e273]:
+        - generic [ref=e274]:
+          - heading "Multi-method Optimization" [level=4] [ref=e277]
+          - paragraph [ref=e278]: Compared Bayesian optimization (Optuna), random search, and multi-objective Pareto search to analyze accuracy-efficiency trade-offs in neural network design.
+        - generic [ref=e279]:
+          - heading "Balanced Experimental Design" [level=4] [ref=e284]
+          - paragraph [ref=e285]: Built a stratified data generation pipeline to eliminate root-type sampling bias, a common blind spot in synthetic math datasets.
+        - generic [ref=e286]:
+          - heading "Rigorous Evaluation" [level=4] [ref=e290]
+          - paragraph [ref=e291]: Assessed models across MAE, RMSE, R², per-root-type error breakdowns, parameter count, and inference speed, not just raw accuracy.
+        - generic [ref=e292]:
+          - heading "Interpretable Results" [level=4] [ref=e298]
+          - paragraph [ref=e299]: Created a PyQt6 dashboard for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box.
+    - generic [ref=e300]:
+      - heading "Let's Connect" [level=3] [ref=e301]
+      - paragraph [ref=e302]: Based in Austin, TX · Studying at University Park, PA.
+      - generic [ref=e303]:
+        - link "hasenbeinalex@gmail.com" [ref=e304] [cursor=pointer]:
+          - /url: mailto:hasenbeinalex@gmail.com
+        - link "LinkedIn Profile" [ref=e308] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/alex-hasenbein-287b53325/
+  - contentinfo [ref=e313]:
+    - generic [ref=e314]:
+      - 'heading "System Status: Online" [level=4] [ref=e317]'
+      - generic [ref=e318]:
+        - paragraph [ref=e319]: "User: Alex Hasenbein"
+        - paragraph [ref=e320]: "Location: Austin, TX"
+        - paragraph [ref=e321]: "Scroll_Depth: 100%"
+        - paragraph [ref=e322]: "Secret_Protocol: Initiated..."
+      - generic [ref=e323]:
+        - link [ref=e324] [cursor=pointer]:
+          - /url: mailto:hasenbeinalex@gmail.com
+        - link [ref=e328] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/alex-hasenbein-287b53325/
+        - link [ref=e333] [cursor=pointer]:
+          - /url: https://github.com/AHasenbein
+      - paragraph [ref=e337]: © 2026 Alex Hasenbein. Built with React, Tailwind & Three.js particles.
