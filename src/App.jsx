@@ -479,13 +479,7 @@ const Footer = () => (
     <footer className="w-full bg-gray-950 text-gray-400 flex flex-col items-center justify-center text-center p-12 md:p-16 font-mono border-t-8 border-indigo-600/50">
       <div className="max-w-md">
         <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
-        <h4 className="text-xl text-gray-200 mb-2">System Status: <span className="text-green-400">Online</span></h4>
-        <div className="text-sm text-gray-600 mb-8 space-y-1">
-          <p> User: Alex Hasenbein</p>
-          <p> Location: {PORTFOLIO_DATA.location}</p>
-          <p> Scroll_Depth: 100%</p>
-          <p> Secret_Protocol: Initiated...</p>
-        </div>
+        <p className="text-sm text-gray-400 mb-8">Alex Hasenbein · Computer Science &amp; Mathematics · Penn State University Park</p>
         <div className="flex justify-center space-x-4 mb-6">
             <a href={`mailto:${PORTFOLIO_DATA.email}`} className="text-gray-400 hover:text-indigo-400 transition-colors">
                 <Mail size={20} />
@@ -640,19 +634,19 @@ const App = () => {
         <ResearchSection />
 
         {/* CONTACT SECTION */}
-        <section id="contact" className="py-28 px-6 max-w-5xl mx-auto text-center">
-          <h3 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6">Let's Connect</h3>
-          <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
+        <section id="contact" className="py-40 px-6 max-w-6xl mx-auto text-center">
+          <h3 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-8">Let's Connect</h3>
+          <p className="text-2xl text-gray-600 mb-14 max-w-3xl mx-auto">
             Based in Austin, TX · Studying at University Park, PA.
           
           </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-8 py-4 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
-              <Mail size={20} />
+          <div className="flex flex-col sm:flex-row justify-center gap-8">
+            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-10 py-5 text-lg bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
+              <Mail size={24} />
               {PORTFOLIO_DATA.email}
             </a>
-            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors shadow-lg font-semibold">
-              <Linkedin size={20} className='text-[#0077b5]' />
+            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-10 py-5 text-lg bg-white text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors shadow-lg font-semibold">
+              <Linkedin size={24} className='text-[#0077b5]' />
               LinkedIn Profile
             </a>
           </div>
