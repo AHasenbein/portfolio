@@ -37,12 +37,12 @@ import research7 from './assets/researchPhotos/research7.png';
 const PORTFOLIO_DATA = {
   name: "ALEX HASENBEIN",
   title: "Full-Stack Developer & Machine Learning Engineer",
-  about: "I am a dual-major student at The Pennsylvania State University (Computer Science & Mathematics) with a completed Behrend Honors Program. I build full-stack applications, ML pipelines, and multi-agent systems, from production analytics dashboards to research-grade evaluation frameworks. My goal is to create something that truly makes peoples lives better.",
+  about: "I am a Computer Science major with a Mathematics minor at The Pennsylvania State University, and I completed the Behrend Honors Program. I build full-stack applications, ML pipelines, and multi-agent systems, from production analytics dashboards to research-grade evaluation frameworks. My goal is to create something that truly makes peoples lives better.",
 
   // Categorized skills from your resume
   skills: [
-    { category: "Languages", icon: <Code2 size={20} />, items: "Java, C++, C#, JavaScript, TypeScript, Python, SQL, VB.NET, HTML, CSS" },
-    { category: "Frameworks", icon: <Layout size={20} />, items: "React, Next.js, Express.js, Spring, ASP.NET, FastAPI, Flask, LightGBM, pandas, scikit-learn, Plotly, NumPy" },
+    { category: "Languages", icon: <Code2 size={20} />, items: "Java, C++, C#, JavaScript, TypeScript, Python, SQL, Go, VB.NET, HTML, CSS" },
+    { category: "Frameworks", icon: <Layout size={20} />, items: "React, Next.js, Express.js, Spring, ASP.NET, FastAPI, Flask, PyTorch, LightGBM, Optuna, pandas, scikit-learn, Plotly, NumPy, Three.js, Discord.js" },
     { category: "Tools & Tech", icon: <Cpu size={20} />, items: "Git, Docker, MongoDB, SQL Server, Node.js, OpenRouter, CI/CD Pipelines, AWS, Azure" },
     { category: "Focus Areas", icon: <Database size={20} />, items: "Full-Stack Development, Machine Learning & AI, Data Science, Backend Engineering, Multi-Agent Systems" },
   ],
@@ -129,7 +129,7 @@ const ResearchSection = () => {
                     <div className="flex-1 pt-4">
                         <div className="prose prose-invert prose-lg text-slate-400">
                             <p className="text-xl">
-                                A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and interactive dashboards for visualizing training progress, hyperparameter importance, and trial history. The goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
+                                A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and a PyQt6 dashboard for visualizing training progress, hyperparameter importance, and trial history. The study trained 1,800 networks (20 seeds x 3 methods x 30 trials). Bayesian (TPE) search cut median best validation error 46.5% versus random search after 30 trials (paired Wilcoxon p = 0.002), with test R² of 0.986 vs 0.980. It is a small synthetic problem, and the goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
                             </p>
                         </div>
                         <div className="mt-8 w-full max-w-3xl">
@@ -233,7 +233,7 @@ const ResearchSection = () => {
                         <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
                         <h4 className="font-bold text-white mb-3 text-xl">Interpretable Results</h4>
                         <p className="text-sm text-slate-400 leading-relaxed">
-                            Created real-time dashboards for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box.
+                            Created a PyQt6 dashboard for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box.
                         </p>
                     </div>
                 </div>
@@ -245,14 +245,15 @@ const ResearchSection = () => {
 const WorkExperienceSection = () => {
   const experiences = [
     {
-      title: "Software Engineering Intern",
+      title: "Software Engineering and Machine Learning Intern",
       company: "Flex",
       location: "Austin, TX",
       dates: "May 2026 - Aug 2026",
       responsibilities: [
-        "Engineered features from SQL Server views and optimized complex queries across production datasets of 4M+ rows, implementing parallelized chunking to eliminate tempdb exhaustion.",
-        "Designed web-based dashboards in C# (ASP.NET) with dynamic charts, tables, and filters, delivering real-time analytics for the process engineering team. Owned delivery of 2 HQ-wide projects, managing version control and roadmap tracking.",
-        "Built internal data analysis tooling in Python (Plotly, pandas) to streamline reporting workflows, reducing analysis time by 10% against baseline (timed measurement against standard tools)."
+        "Built a LightGBM model (pandas, scikit-learn) forecasting board build time on 1M+ records; 90% of predictions landed within 30 seconds of actual on a separate, leakage-controlled test set.",
+        "Eliminated tempdb exhaustion on production datasets of 4M+ rows by parallelizing query chunking; engineered features from SQL Server views and optimized complex queries.",
+        "Delivered real-time C# (ASP.NET) dashboards with dynamic charts, tables, and filters for the process engineering team, plus Python (Plotly, pandas) reporting tooling that cut weekly analysis time by 2 hours on average.",
+        "Owned delivery of 2 HQ-wide projects, managing version control and roadmap tracking: a PCN/deviation tool and a migration of ~20 daily emails into an engineering dashboard."
       ]
     },
     {
@@ -261,9 +262,10 @@ const WorkExperienceSection = () => {
       location: "Erie, PA",
       dates: "Jan 2025 – May 2025",
       responsibilities: [
-        "Built a hyperparameter optimization framework for PyTorch neural networks predicting quadratic roots, benchmarking Bayesian optimization (Optuna), random search, and multi-objective Pareto search to quantify accuracy-efficiency tradeoffs.",
-        "Built a data pipeline and full evaluation suite (MAE, RMSE, R², per-class error, inference speed) with interactive dashboards for hyperparameter analysis and trial exploration, ensuring reproducible, interpretable results."
-      ]
+        "Cut median validation error 46.5% (p = 0.002) with Bayesian (Optuna) search versus random search in a 1,800-network PyTorch study (20 seeds x 3 methods) on quadratic-root prediction; test R² 0.986 vs 0.980 (p = 0.003).",
+        "Built the framework comparing Bayesian, random, and multi-objective Pareto search, with a root-type-balanced data pipeline, an evaluation suite (MAE, RMSE, R², parameter count, inference latency), and a PyQt6 dashboard.",
+        "Raised R² from near 0 to 0.98+ by restricting coefficient |a| to at least 0.5 (roots scale as 1/a), and fixed a bug that omitted the repeated-root class from validation."
+            ]
     }
   ];
 
@@ -333,7 +335,7 @@ const HackathonSection = () => {
           </div>
 
           <p className="text-gray-700 leading-relaxed mb-4">
-            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Architected specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
+            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Architected four specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
           </p>
           <p className="text-gray-700 leading-relaxed mb-5">
             Implemented autonomous project kickoff, thread-based task decomposition, and persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT/TTS in Discord voice channels.
@@ -378,9 +380,18 @@ const HackathonSection = () => {
   );
 };
 
+// --- COMPONENT: PLACEHOLDER FOR PROJECTS WITHOUT A SCREENSHOT ---
+const ProjectPlaceholder = ({ title }) => (
+  <div className="w-full h-full min-h-[200px] flex items-center justify-center bg-gradient-to-br from-indigo-600 via-indigo-500 to-blue-500 p-6">
+    <span className="text-white/90 text-2xl md:text-3xl font-extrabold tracking-tight text-center">{title}</span>
+  </div>
+);
+
 // --- COMPONENT: PROJECT WINDOW MODAL ---
 const ProjectModal = ({ project, onClose }) => {
+  const [activeImg, setActiveImg] = useState(0);
   if (!project) return null;
+  const gallery = project.images || (project.image ? [project.image] : []);
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm" onClick={onClose}>
       {/* Browser Window Container */}
@@ -407,11 +418,29 @@ const ProjectModal = ({ project, onClose }) => {
         <div className="flex flex-col md:flex-row max-h-[80vh] md:max-h-none">
           {/* Image Side */}
           <div className="w-full md:w-2/3 bg-gray-50 border-r border-gray-200 relative group overflow-hidden">
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-            />
+            {project.image ? (
+              <>
+                <img
+                  src={gallery[activeImg] || project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                />
+                {gallery.length > 1 && (
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur rounded-full px-3 py-2 shadow">
+                    {gallery.map((_, i) => (
+                      <button
+                        key={i}
+                        aria-label={`Show screenshot ${i + 1}`}
+                        onClick={() => setActiveImg(i)}
+                        className={`w-2.5 h-2.5 rounded-full transition-colors ${i === activeImg ? 'bg-indigo-600' : 'bg-gray-400 hover:bg-gray-500'}`}
+                      />
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <ProjectPlaceholder title={project.title} />
+            )}
           </div>
 
           {/* Details Side */}
@@ -427,6 +456,7 @@ const ProjectModal = ({ project, onClose }) => {
             <p className="text-gray-600 text-sm leading-relaxed flex-grow">
               {project.description}
             </p>
+            {project.link && (
             <div className="mt-6 pt-6 border-t border-gray-100">
               <a
                 href={project.link}
@@ -434,9 +464,10 @@ const ProjectModal = ({ project, onClose }) => {
                 rel="noreferrer"
                 className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 transition-all active:scale-95 font-medium text-sm"
               >
-                View Live Project <ExternalLink size={16} />
+                {project.linkLabel || 'View Live Project'} <ExternalLink size={16} />
               </a>
             </div>
+                        )}
           </div>
         </div>
       </div>
@@ -525,14 +556,15 @@ const App = () => {
                 <span className="font-extrabold tracking-wider text-sm uppercase">About Me & Education</span>
               </div>
               <h3 className="text-4xl font-bold mb-6 text-gray-900">The Pennsylvania State University</h3>
-              <p className="text-indigo-700 font-semibold mb-4">University Park, PA · GPA: 3.5</p>
+              <p className="text-indigo-700 font-semibold mb-4">University Park, PA · GPA: 3.5 / 4.0</p>
               <p className="text-xl text-gray-700 leading-relaxed mb-8 border-l-4 border-indigo-400 pl-4">
                 {PORTFOLIO_DATA.about}
               </p>
               <ul className="space-y-3 text-gray-600 text-lg">
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> B.S. Computer Science & B.S. Mathematics</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> B.S. Computer Science · Minor in Mathematics</li>
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Expected Graduation: May 2028</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholarship · Behrend Honors Program</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Coursework: Data Structures & Algorithms, Discrete Mathematics, Linear Algebra, Object-Oriented Programming</li>
+                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholar · Behrend Honors Program</li>
                 <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Nittany AI Leadership Academy · Nittany AI ELP</li>
               </ul>
             </div>
@@ -577,11 +609,15 @@ const App = () => {
                   onClick={() => setActiveProject(project)}
                 >
                   <div className="relative overflow-hidden aspect-[4/3] rounded-t-xl">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
-                    />
+                    {project.image ? (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <ProjectPlaceholder title={project.title} />
+                    )}
                     <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/30 transition-colors flex items-center justify-center">
                       <span className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 bg-white/90 backdrop-blur text-gray-900 px-4 py-2 rounded-full shadow-xl font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-gray-200">
                         <ExternalLink size={14} /> Preview Details
@@ -629,7 +665,7 @@ const App = () => {
       <Footer />
 
       {/* MODAL COMPONENT */}
-      <ProjectModal project={activeProject} onClose={() => setActiveProject(null)} />
+      <ProjectModal key={activeProject?.id} project={activeProject} onClose={() => setActiveProject(null)} />
     </div>
   );
 };
