@@ -320,7 +320,7 @@ const WorkExperienceSection = () => {
 const HackathonSection = () => {
   return (
     <section id="hackathon" className="py-24 px-6 bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto space-y-8">
         <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-8 md:p-10 shadow-xl">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
             <div>
@@ -333,11 +333,8 @@ const HackathonSection = () => {
             </div>
           </div>
 
-          <p className="text-gray-700 leading-relaxed mb-4">
-            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Architected four specialized agents (Manager, Dev, QA, Command) with scoped roles and task handoff in strict TypeScript using Discord.js and OpenRouter, with modular model routing to swap LLMs per agent without modifying orchestration logic.
-          </p>
           <p className="text-gray-700 leading-relaxed mb-5">
-            Implemented autonomous project kickoff, thread-based task decomposition, and persistent run/state tracking with pause/resume/cancel controls, plus voice-first Q&A via local Whisper STT/TTS in Discord voice channels.
+            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Four specialized agents (Manager, Dev, QA, Command) that split up and hand off tasks in Discord, built in TypeScript with Discord.js and OpenRouter. Each agent can run a different LLM, and you can ask questions by voice using local Whisper speech-to-text.
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
@@ -366,6 +363,45 @@ const HackathonSection = () => {
             </a>
             <a
               href="https://github.com/AHasenbein/Devcord-Multi-Agent"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-900 px-5 py-3 font-semibold hover:bg-gray-100 transition-colors"
+            >
+              View GitHub Repository
+            </a>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-8 md:p-10 shadow-xl">
+          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
+            <div>
+              <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
+              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">3rd Place, c0mpiled 15</h4>
+              <p className="text-gray-700 mt-2">Penn State</p>
+            </div>
+            <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
+              Built in 4 hours
+            </div>
+          </div>
+
+          <p className="text-gray-700 leading-relaxed mb-4">
+            <span className="font-semibold">Levee – Flood Stress Testing for Rental Deals.</span> Stress-tests a rental property deal against its worst plausible year. A deal that looks fine on an average year can flip to failing once a flood year hits, with vacancy, the insurance deductible, uninsured repairs, and higher premiums applied.
+          </p>
+          <p className="text-gray-700 leading-relaxed mb-5">
+            A deterministic engine computes every number (NOI, DSCR, out-of-pocket cost) plus a seeded 10,000-path Monte Carlo simulation, using flood zones from FEMA and Census lookups. AWS Bedrock writes an investment memo, and every figure in it is checked against the engine output. A Deal Finder agent screens listings and pays per analysis through an HTTP 402 flow under a spending cap, alongside Stripe credits and plans. Built with React, TypeScript, Hono, and Netlify Functions.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="https://youtu.be/KqTA5zFdFT0"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-5 py-3 font-semibold hover:bg-gray-700 transition-colors"
+            >
+              Watch Demo Video
+            </a>
+            <a
+              href="https://github.com/AHasenbein/Levee"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-900 px-5 py-3 font-semibold hover:bg-gray-100 transition-colors"
