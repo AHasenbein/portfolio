@@ -5,18 +5,22 @@ import {
   Mail,
   ExternalLink,
   X,
-  Terminal,
   Code2,
   Cpu,
   Database,
   Layout,
   Briefcase,
   GraduationCap,
+  Trophy,
+  Play,
+  ArrowUpRight,
+  ChevronLeft,
+  ChevronRight,
+  MapPin,
   // New Imports for Research Section
   Network,
   Zap,
   LineChart,
-  Layers,
   Microscope
 } from 'lucide-react';
 
@@ -54,6 +58,28 @@ const PORTFOLIO_DATA = {
   github: "https://github.com/AHasenbein"
 };
 
+// --- SHARED UI: keeps every section on the same type scale, spacing, and card style ---
+const SectionHeader = ({ icon, eyebrow, title, subtitle }) => (
+  <div className="mb-12 max-w-3xl">
+    <div className="flex items-center gap-2 text-indigo-600 mb-3">
+      {icon}
+      <span className="font-semibold tracking-widest text-xs uppercase">{eyebrow}</span>
+    </div>
+    <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900">{title}</h2>
+    {subtitle && <p className="mt-4 text-lg text-gray-600 leading-relaxed">{subtitle}</p>}
+  </div>
+);
+
+const Tag = ({ children }) => (
+  <span className="inline-flex items-center rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-100">
+    {children}
+  </span>
+);
+
+const cardClass = "rounded-2xl border border-gray-200 bg-white shadow-sm";
+const primaryButtonClass = "inline-flex items-center justify-center gap-2 rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-indigo-600/20 transition-colors hover:bg-indigo-700";
+const secondaryButtonClass = "inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50";
+
 // --- COMPONENT: STICKY NAVBAR ---
 const StickyNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -67,14 +93,14 @@ const StickyNavbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? 'bg-white/80 backdrop-blur-md border-gray-200' : 'bg-transparent border-transparent'}`}>
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <span className="font-bold text-xl tracking-tight text-gray-900">
           TRY. FAIL. INNOVATE<span className="text-indigo-600">.</span>
         </span>
         <div className="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
-          <a href="#about" className="hover:text-indigo-600 transition-colors">Education</a>
-          <a href="#work" className="hover:text-indigo-600 transition-colors">Professional Impact</a>
+          <a href="#about" className="hover:text-indigo-600 transition-colors">About</a>
+          <a href="#work" className="hover:text-indigo-600 transition-colors">Experience</a>
           <a href="#projects" className="hover:text-indigo-600 transition-colors">Projects</a>
           <a href="#hackathon" className="hover:text-indigo-600 transition-colors">Hackathon</a>
           <a href="#research" className="hover:text-indigo-600 transition-colors">Research</a>
@@ -103,139 +129,132 @@ const ResearchSection = () => {
         }, 3500);
         return () => clearInterval(interval);
     }, [researchCarouselImages.length]);
-    return (
-        <section id="research" className="py-32 bg-slate-900 text-slate-100 relative overflow-hidden border-t border-slate-800">
-            
-            {/* Background Ambience */}
-            <div className="absolute top-0 left-1/2 w-[900px] h-[600px] bg-indigo-600/10 rounded-full blur-[150px] -translate-x-1/2 -mt-24 pointer-events-none"></div>
-            <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-blue-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+    const researchStats = [
+        { value: "1,800", label: "networks trained (20 seeds x 3 methods x 30 trials)" },
+        { value: "46.5%", label: "lower median best validation error, Bayesian (TPE) vs. random search" },
+        { value: "p = 0.002", label: "paired Wilcoxon significance" },
+        { value: "0.986", label: "test R² (vs. 0.980 for random search)" },
+    ];
+    const researchHighlights = [
+        {
+            icon: <Zap size={20} />,
+            title: "Multi-method Optimization",
+            text: "Compared Bayesian optimization (Optuna), random search, and multi-objective Pareto search to analyze accuracy-efficiency trade-offs in neural network design."
+        },
+        {
+            icon: <Database size={20} />,
+            title: "Balanced Experimental Design",
+            text: "Built a stratified data generation pipeline to eliminate root-type sampling bias, a common blind spot in synthetic math datasets."
+        },
+        {
+            icon: <LineChart size={20} />,
+            title: "Rigorous Evaluation",
+            text: "Assessed models across MAE, RMSE, R², per-root-type error breakdowns, parameter count, and inference speed, not just raw accuracy."
+        },
+        {
+            icon: <Network size={20} />,
+            title: "Interpretable Results",
+            text: "Created a PyQt6 dashboard for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box."
+        },
+    ];
+    const showPrevious = () =>
+        setActiveResearchImage((prev) => (prev === 0 ? researchCarouselImages.length - 1 : prev - 1));
+    const showNext = () =>
+        setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length);
 
-            <div className="max-w-7xl mx-auto px-8 relative z-10">
-                
-                {/* 🧪 Top Section: Header & Intro */}
-                <div className="flex flex-col md:flex-row gap-20 mb-20 items-start">
-                    <div className="flex-1 max-w-lg">
-                        <div className="flex items-center gap-3 text-indigo-400 mb-4">
-                            <Microscope size={24} />
-                            <span className="font-bold tracking-widest text-sm uppercase">Penn State Honors Research</span>
-                        </div>
-                        <h2 className="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6">
-                            Hyperoptimization of Artificial Intelligence-Based <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-400">
+    return (
+        <section id="research" className="scroll-mt-16 py-24 border-t border-gray-200">
+            <div className="max-w-6xl mx-auto px-6">
+                <SectionHeader
+                    icon={<Microscope size={18} />}
+                    eyebrow="Penn State Honors Research"
+                    title={
+                        <>
+                            Hyperoptimization of Artificial Intelligence-Based{' '}
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">
                                 Quadratic Equation Predictors
                             </span>
-                        </h2>
-                    </div>
-                    <div className="flex-1 pt-4">
-                        <div className="prose prose-invert prose-lg text-slate-400">
-                            <p className="text-xl">
-                                A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and a PyQt6 dashboard for visualizing training progress, hyperparameter importance, and trial history. The study trained 1,800 networks (20 seeds x 3 methods x 30 trials). Bayesian (TPE) search cut median best validation error 46.5% versus random search after 30 trials (paired Wilcoxon p = 0.002), with test R² of 0.986 vs 0.980. It is a small synthetic problem, and the goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
-                            </p>
+                        </>
+                    }
+                />
+
+                {/* Headline results */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+                    {researchStats.map((stat) => (
+                        <div key={stat.value} className={`${cardClass} p-5`}>
+                            <p className="text-2xl md:text-3xl font-extrabold tracking-tight text-indigo-600 tabular-nums">{stat.value}</p>
+                            <p className="mt-1 text-sm text-gray-500 leading-snug">{stat.label}</p>
                         </div>
-                        <div className="mt-8 w-full max-w-3xl">
-                            <div className="relative group rounded-2xl overflow-hidden border-2 border-slate-700 bg-slate-800/90 shadow-xl transition-all duration-300 hover:border-indigo-500">
-                                <div className="absolute top-0 left-0 right-0 z-20 px-5 py-3 bg-slate-900/90 border-b border-slate-700 flex justify-between items-center">
-                                    <div className="flex items-center gap-3">
-                                        <Layers size={20} className="text-indigo-400" />
-                                        <span className="text-sm font-extrabold tracking-widest text-white uppercase">Research Carousel</span>
-                                    </div>
-                                    <span className="text-xs text-slate-300 font-mono">
-                                        {activeResearchImage + 1}/{researchCarouselImages.length}
-                                    </span>
-                                </div>
+                    ))}
+                </div>
 
-                                <div className="w-full relative pt-16" style={{ paddingBottom: '58%' }}>
-                                    {researchCarouselImages.map((image, idx) => (
-                                        <img
-                                            key={idx}
-                                            src={image}
-                                            alt={`Research visual ${idx + 1}`}
-                                            className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${
-                                                idx === activeResearchImage ? 'opacity-100' : 'opacity-0'
-                                            }`}
-                                        />
-                                    ))}
-                                </div>
+                <div className="grid lg:grid-cols-2 gap-10 items-start mb-12">
+                    <p className="text-gray-600 leading-relaxed">
+                        A research project exploring how small neural networks learn mathematical function approximation, using quadratic root prediction as a controlled testbed for studying hyperparameter optimization. I implemented and compared three search strategies (Bayesian optimization, random search, and multi-objective Pareto search) to understand the trade-offs between model accuracy and efficiency. The project pairs a stratified data generation pipeline (balanced across real, complex, and repeated roots) with a comprehensive evaluation suite and a PyQt6 dashboard for visualizing training progress, hyperparameter importance, and trial history. The study trained 1,800 networks (20 seeds x 3 methods x 30 trials). Bayesian (TPE) search cut median best validation error 46.5% versus random search after 30 trials (paired Wilcoxon p = 0.002), with test R² of 0.986 vs 0.980. It is a small synthetic problem, and the goal wasn't to solve a hard problem, but to run a clean, well-instrumented experiment that surfaces practical, transferable lessons about optimizing small ML models.
+                    </p>
 
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setActiveResearchImage((prev) =>
-                                            prev === 0 ? researchCarouselImages.length - 1 : prev - 1
-                                        )
-                                    }
-                                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-900/80 text-white text-lg hover:bg-indigo-600 transition-colors"
-                                    aria-label="Previous research image"
-                                >
-                                    ‹
-                                </button>
-                                <button
-                                    type="button"
-                                    onClick={() =>
-                                        setActiveResearchImage((prev) => (prev + 1) % researchCarouselImages.length)
-                                    }
-                                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 h-10 w-10 rounded-full bg-slate-900/80 text-white text-lg hover:bg-indigo-600 transition-colors"
-                                    aria-label="Next research image"
-                                >
-                                    ›
-                                </button>
-
-                                <div className="px-5 py-4 border-t border-slate-700 bg-slate-900/80 flex items-center justify-center gap-2">
-                                    {researchCarouselImages.map((_, idx) => (
-                                        <button
-                                            key={idx}
-                                            type="button"
-                                            onClick={() => setActiveResearchImage(idx)}
-                                            className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                                                idx === activeResearchImage ? 'bg-indigo-400' : 'bg-slate-600 hover:bg-slate-400'
-                                            }`}
-                                            aria-label={`Go to research image ${idx + 1}`}
-                                        />
-                                    ))}
-                                </div>
+                    {/* Research carousel */}
+                    <div className={`${cardClass} overflow-hidden lg:sticky lg:top-24`}>
+                        <div className="relative aspect-[16/10] bg-gray-50">
+                            {researchCarouselImages.map((image, idx) => (
+                                <img
+                                    key={idx}
+                                    src={image}
+                                    alt={`Research visual ${idx + 1}`}
+                                    className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-500 ${
+                                        idx === activeResearchImage ? 'opacity-100' : 'opacity-0'
+                                    }`}
+                                />
+                            ))}
+                            <button
+                                type="button"
+                                onClick={showPrevious}
+                                className="absolute left-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-gray-700 shadow-sm ring-1 ring-gray-200 transition-colors hover:text-indigo-600"
+                                aria-label="Previous research image"
+                            >
+                                <ChevronLeft size={18} />
+                            </button>
+                            <button
+                                type="button"
+                                onClick={showNext}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-gray-700 shadow-sm ring-1 ring-gray-200 transition-colors hover:text-indigo-600"
+                                aria-label="Next research image"
+                            >
+                                <ChevronRight size={18} />
+                            </button>
+                        </div>
+                        <div className="flex items-center justify-between border-t border-gray-200 px-5 py-3">
+                            <div className="flex items-center gap-2">
+                                {researchCarouselImages.map((_, idx) => (
+                                    <button
+                                        key={idx}
+                                        type="button"
+                                        onClick={() => setActiveResearchImage(idx)}
+                                        className={`h-2 rounded-full transition-all ${
+                                            idx === activeResearchImage ? 'w-5 bg-indigo-600' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                                        }`}
+                                        aria-label={`Go to research image ${idx + 1}`}
+                                    />
+                                ))}
                             </div>
+                            <span className="text-xs text-gray-500 font-mono tabular-nums">
+                                {activeResearchImage + 1} / {researchCarouselImages.length}
+                            </span>
                         </div>
                     </div>
                 </div>
 
-                {/* ⚙️ Bottom Section: Technical Detail Cards (Grid) */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    
-                    {/* Card 1 */}
-                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Zap className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Multi-method Optimization</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                            Compared Bayesian optimization (Optuna), random search, and multi-objective Pareto search to analyze accuracy-efficiency trade-offs in neural network design.
-                        </p>
-                    </div>
-
-                    {/* Card 2 */}
-                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Database className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Balanced Experimental Design</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                            Built a stratified data generation pipeline to eliminate root-type sampling bias, a common blind spot in synthetic math datasets.
-                        </p>
-                    </div>
-
-                    {/* Card 3 */}
-                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <LineChart className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Rigorous Evaluation</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                            Assessed models across MAE, RMSE, R², per-root-type error breakdowns, parameter count, and inference speed, not just raw accuracy.
-                        </p>
-                    </div>
-
-                    {/* Card 4 */}
-                    <div className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:bg-slate-800 hover:border-indigo-500 transition-all duration-300 group">
-                        <Network className="text-indigo-400 mb-4 group-hover:scale-[1.05] transition-transform" size={32} />
-                        <h4 className="font-bold text-white mb-3 text-xl">Interpretable Results</h4>
-                        <p className="text-sm text-slate-400 leading-relaxed">
-                            Created a PyQt6 dashboard for training curves, hyperparameter importance, and trial history, turning the optimization process into something explorable rather than a black box.
-                        </p>
-                    </div>
+                {/* Technical highlights */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {researchHighlights.map((item) => (
+                        <div key={item.title} className={`${cardClass} p-6 transition-colors hover:border-indigo-200`}>
+                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-50 text-indigo-600">
+                                {item.icon}
+                            </div>
+                            <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
+                            <p className="text-sm text-gray-600 leading-relaxed">{item.text}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
@@ -270,145 +289,145 @@ const WorkExperienceSection = () => {
   ];
 
   return (
-    <section id="work" className="py-32 bg-gradient-to-b from-white via-indigo-50/60 to-white border-y border-gray-200 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
-        <div className="mb-12">
-          <div className="flex items-center gap-3 text-indigo-600 mb-3">
-            <Briefcase size={24} />
-            <span className="font-extrabold tracking-wider text-sm uppercase">Work Experience</span>
-          </div>
-          <h3 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">Professional Impact</h3>
-          <p className="text-lg text-gray-600 max-w-3xl">
-            Building production-facing tools for engineering teams and turning process data into usable decisions.
-          </p>
-        </div>
+    <section id="work" className="scroll-mt-16 py-24 border-t border-gray-200">
+      <div className="max-w-6xl mx-auto px-6">
+        <SectionHeader
+          icon={<Briefcase size={18} />}
+          eyebrow="Work Experience"
+          title="Professional Impact"
+          subtitle="Building production-facing tools for engineering teams and turning process data into usable decisions."
+        />
 
-        <div className="space-y-8">
+        <ol className="relative space-y-8 border-l border-gray-200 ml-2">
           {experiences.map((exp, expIdx) => (
-            <div
-              key={expIdx}
-              className="rounded-3xl border border-indigo-100 bg-gradient-to-br from-indigo-50 via-white to-blue-50 shadow-2xl shadow-indigo-100/40 p-8 md:p-10"
-            >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 border-b border-indigo-100 pb-8 mb-8">
-                <div>
-                  <h4 className="text-2xl md:text-3xl font-bold text-gray-900">{exp.title}</h4>
-                  <p className="text-indigo-700 font-semibold text-lg mt-2">{exp.company}</p>
-                  <p className="text-gray-600 mt-2">{exp.location}</p>
-                </div>
-                <div className="inline-flex items-center rounded-full bg-indigo-600 text-white px-4 py-2 text-sm font-semibold self-start">
-                  {exp.dates}
-                </div>
-              </div>
-
-              <p className="text-gray-700 font-semibold mb-4">Key contributions:</p>
-              <div className={`grid gap-4 ${exp.responsibilities.length > 2 ? 'md:grid-cols-2' : 'md:grid-cols-1'}`}>
-                {exp.responsibilities.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3 rounded-xl border border-gray-100 bg-white/80 p-4 shadow-sm">
-                    <span className="mt-2 h-2.5 w-2.5 rounded-full bg-indigo-600 flex-shrink-0"></span>
-                    <p className="text-gray-700 text-sm leading-relaxed">{item}</p>
+            <li key={expIdx} className="relative pl-8 md:pl-10">
+              <span className="absolute -left-[7px] top-9 h-3.5 w-3.5 rounded-full bg-indigo-600 ring-4 ring-indigo-100"></span>
+              <div className={`${cardClass} p-6 md:p-8`}>
+                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-6">
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-gray-900">{exp.title}</h3>
+                    <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="text-indigo-700 font-semibold">{exp.company}</span>
+                      <span className="inline-flex items-center gap-1 text-sm text-gray-500">
+                        <MapPin size={14} /> {exp.location}
+                      </span>
+                    </p>
                   </div>
-                ))}
+                  <span className="self-start whitespace-nowrap rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600 font-mono">
+                    {exp.dates}
+                  </span>
+                </div>
+
+                <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Key contributions:</p>
+                <ul className="space-y-3">
+                  {exp.responsibilities.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-indigo-500 flex-shrink-0"></span>
+                      <p className="text-gray-600 leading-relaxed">{item}</p>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </div>
     </section>
   );
 };
 
+const HACKATHONS = [
+  {
+    placement: "1st Place, AI Agents & LLMs",
+    event: "Behrend Hackathon",
+    badge: "Built solo in 10 hours",
+    name: "DevCord – Multi-Agent AI Orchestration Platform.",
+    paragraphs: [
+      "Four specialized agents (Manager, Dev, QA, Command) that split up and hand off tasks in Discord, built in TypeScript with Discord.js and OpenRouter. Each agent can run a different LLM, and you can ask questions by voice using local Whisper speech-to-text."
+    ],
+    favorites: [
+      "Join a Discord call and ask a bot questions about your live project context.",
+      "Watch agents ask each other for help when the question is outside their domain.",
+      "Get high-quality, cross-agent feedback while one bot is building."
+    ],
+    video: "https://www.youtube.com/watch?v=mAAqsrhs_VM",
+    repo: "https://github.com/AHasenbein/Devcord-Multi-Agent"
+  },
+  {
+    placement: "3rd Place, c0mpiled 15",
+    event: "Penn State",
+    badge: "Built in 4 hours",
+    name: "Levee – Flood Stress Testing for Rental Deals.",
+    paragraphs: [
+      "Stress-tests a rental property deal against its worst plausible year. A deal that looks fine on an average year can flip to failing once a flood year hits, with vacancy, the insurance deductible, uninsured repairs, and higher premiums applied.",
+      "A deterministic engine computes every number (NOI, DSCR, out-of-pocket cost) plus a seeded 10,000-path Monte Carlo simulation, using flood zones from FEMA and Census lookups. AWS Bedrock writes an investment memo, and every figure in it is checked against the engine output. A Deal Finder agent screens listings and pays per analysis through an HTTP 402 flow under a spending cap, alongside Stripe credits and plans. Built with React, TypeScript, Hono, and Netlify Functions."
+    ],
+    video: "https://youtu.be/KqTA5zFdFT0",
+    repo: "https://github.com/AHasenbein/Levee"
+  }
+];
+
 const HackathonSection = () => {
   return (
-    <section id="hackathon" className="py-24 px-6 bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto space-y-8">
-        <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-8 md:p-10 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
-            <div>
-              <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
-              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">1st Place, AI Agents & LLMs</h4>
-              <p className="text-gray-700 mt-2">Behrend Hackathon</p>
-            </div>
-            <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
-              Built solo in 10 hours
-            </div>
-          </div>
+    <section id="hackathon" className="scroll-mt-16 py-24 border-t border-gray-200">
+      <div className="max-w-6xl mx-auto px-6">
+        <SectionHeader
+          icon={<Trophy size={18} />}
+          eyebrow="Hackathon Achievements"
+          title="Hackathons"
+        />
 
-          <p className="text-gray-700 leading-relaxed mb-5">
-            <span className="font-semibold">DevCord – Multi-Agent AI Orchestration Platform.</span> Four specialized agents (Manager, Dev, QA, Command) that split up and hand off tasks in Discord, built in TypeScript with Discord.js and OpenRouter. Each agent can run a different LLM, and you can ask questions by voice using local Whisper speech-to-text.
-          </p>
+        <div className="grid lg:grid-cols-2 gap-6">
+          {HACKATHONS.map((hack) => (
+            <article key={hack.placement} className={`${cardClass} flex flex-col p-6 md:p-8`}>
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+                <div className="flex items-start gap-4">
+                  <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600 ring-1 ring-inset ring-amber-100">
+                    <Trophy size={20} />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{hack.placement}</h3>
+                    <p className="text-sm text-gray-500">{hack.event}</p>
+                  </div>
+                </div>
+                <span className="self-start inline-flex whitespace-nowrap rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">
+                  {hack.badge}
+                </span>
+              </div>
 
-          <div className="grid md:grid-cols-3 gap-4 mb-6">
-            <div className="rounded-xl border border-gray-200 bg-white p-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
-              <p className="text-sm text-gray-700">Join a Discord call and ask a bot questions about your live project context.</p>
-            </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
-              <p className="text-sm text-gray-700">Watch agents ask each other for help when the question is outside their domain.</p>
-            </div>
-            <div className="rounded-xl border border-gray-200 bg-white p-4">
-              <p className="text-xs uppercase tracking-widest text-gray-500 font-semibold mb-2">Favorite Feature</p>
-              <p className="text-sm text-gray-700">Get high-quality, cross-agent feedback while one bot is building.</p>
-            </div>
-          </div>
+              <div className="space-y-4 text-gray-600 leading-relaxed">
+                {hack.paragraphs.map((text, idx) => (
+                  <p key={idx}>
+                    {idx === 0 && <span className="font-semibold text-gray-900">{hack.name} </span>}
+                    {text}
+                  </p>
+                ))}
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://www.youtube.com/watch?v=mAAqsrhs_VM"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-5 py-3 font-semibold hover:bg-gray-700 transition-colors"
-            >
-              Watch Demo Video
-            </a>
-            <a
-              href="https://github.com/AHasenbein/Devcord-Multi-Agent"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-900 px-5 py-3 font-semibold hover:bg-gray-100 transition-colors"
-            >
-              View GitHub Repository
-            </a>
-          </div>
-        </div>
+              {hack.favorites && (
+                <div className="mt-6 rounded-xl bg-gray-50 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3">Favorite Features</p>
+                  <ul className="space-y-2">
+                    {hack.favorites.map((item) => (
+                      <li key={item} className="flex items-start gap-3 text-sm text-gray-600">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-indigo-500 flex-shrink-0"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
 
-        <div className="rounded-3xl border border-amber-200 bg-gradient-to-r from-amber-50 via-white to-indigo-50 p-8 md:p-10 shadow-xl">
-          <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-5">
-            <div>
-              <p className="text-amber-700 text-sm font-extrabold tracking-wider uppercase">Hackathon Achievement</p>
-              <h4 className="text-2xl md:text-3xl font-bold text-gray-900 mt-2">3rd Place, c0mpiled 15</h4>
-              <p className="text-gray-700 mt-2">Penn State</p>
-            </div>
-            <div className="inline-flex items-center rounded-full bg-amber-500/90 text-white px-4 py-2 text-sm font-semibold self-start">
-              Built in 4 hours
-            </div>
-          </div>
-
-          <p className="text-gray-700 leading-relaxed mb-4">
-            <span className="font-semibold">Levee – Flood Stress Testing for Rental Deals.</span> Stress-tests a rental property deal against its worst plausible year. A deal that looks fine on an average year can flip to failing once a flood year hits, with vacancy, the insurance deductible, uninsured repairs, and higher premiums applied.
-          </p>
-          <p className="text-gray-700 leading-relaxed mb-5">
-            A deterministic engine computes every number (NOI, DSCR, out-of-pocket cost) plus a seeded 10,000-path Monte Carlo simulation, using flood zones from FEMA and Census lookups. AWS Bedrock writes an investment memo, and every figure in it is checked against the engine output. A Deal Finder agent screens listings and pays per analysis through an HTTP 402 flow under a spending cap, alongside Stripe credits and plans. Built with React, TypeScript, Hono, and Netlify Functions.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="https://youtu.be/KqTA5zFdFT0"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-gray-900 text-white px-5 py-3 font-semibold hover:bg-gray-700 transition-colors"
-            >
-              Watch Demo Video
-            </a>
-            <a
-              href="https://github.com/AHasenbein/Levee"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-gray-300 bg-white text-gray-900 px-5 py-3 font-semibold hover:bg-gray-100 transition-colors"
-            >
-              View GitHub Repository
-            </a>
-          </div>
+              <div className="mt-auto pt-6 flex flex-col sm:flex-row gap-3">
+                <a href={hack.video} target="_blank" rel="noreferrer" className={primaryButtonClass}>
+                  <Play size={16} /> Watch Demo Video
+                </a>
+                <a href={hack.repo} target="_blank" rel="noreferrer" className={secondaryButtonClass}>
+                  <Github size={16} /> View GitHub Repository
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -417,92 +436,100 @@ const HackathonSection = () => {
 
 // --- COMPONENT: PLACEHOLDER FOR PROJECTS WITHOUT A SCREENSHOT ---
 const ProjectPlaceholder = ({ title }) => (
-  <div className="w-full h-full min-h-[200px] flex items-center justify-center bg-gradient-to-br from-indigo-600 via-indigo-500 to-blue-500 p-6">
-    <span className="text-white/90 text-2xl md:text-3xl font-extrabold tracking-tight text-center">{title}</span>
+  <div className="w-full h-full min-h-[200px] flex flex-col items-center justify-center gap-3 bg-indigo-50/60 p-6 bg-[radial-gradient(circle,_rgb(199_210_254)_1px,_transparent_1px)] [background-size:16px_16px]">
+    <Code2 size={28} className="text-indigo-400" />
+    <span className="text-indigo-700 text-2xl md:text-3xl font-extrabold tracking-tight text-center">{title}</span>
   </div>
 );
 
-// --- COMPONENT: PROJECT WINDOW MODAL ---
+// --- COMPONENT: PROJECT DETAILS MODAL ---
 const ProjectModal = ({ project, onClose }) => {
   const [activeImg, setActiveImg] = useState(0);
+
+  useEffect(() => {
+    if (!project) return;
+    const handleKey = (e) => e.key === 'Escape' && onClose();
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [project, onClose]);
+
   if (!project) return null;
   const gallery = project.images || (project.image ? [project.image] : []);
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/50 backdrop-blur-sm" onClick={onClose}>
-      {/* Browser Window Container */}
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm" onClick={onClose}>
       <div
-        className="w-full max-w-4xl bg-white rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300"
+        role="dialog"
+        aria-modal="true"
+        aria-label={project.title}
+        className="w-full max-w-5xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Browser Header */}
-        <div className="bg-gray-100 border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-400 hover:bg-red-500 cursor-pointer" onClick={onClose}></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-            <div className="w-3 h-3 rounded-full bg-green-400"></div>
-          </div>
-          <div className="bg-white px-3 py-1 rounded-md text-xs text-gray-500 border border-gray-200 flex-1 mx-6 text-center font-mono truncate">
-            localhost:3000/projects/{project.title.toLowerCase().replace(/\s/g, '-')}
-          </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-gray-600">
+        {/* Header */}
+        <div className="flex items-center justify-between gap-4 border-b border-gray-200 px-6 py-4">
+          <h3 className="text-xl font-bold text-gray-900">{project.title}</h3>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-900"
+          >
             <X size={18} />
           </button>
         </div>
 
-        {/* Browser Content Area */}
-        <div className="flex flex-col md:flex-row max-h-[80vh] md:max-h-none">
-          {/* Image Side */}
-          <div className="w-full md:w-2/3 bg-gray-50 border-r border-gray-200 relative group overflow-hidden">
+        <div className="flex flex-col md:flex-row overflow-y-auto">
+          {/* Gallery */}
+          <div className="w-full md:w-3/5 bg-gray-50 border-b md:border-b-0 md:border-r border-gray-200 p-4">
             {project.image ? (
               <>
-                <img
-                  src={gallery[activeImg] || project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
-                />
+                <div className="overflow-hidden rounded-lg border border-gray-200 bg-white">
+                  <img
+                    src={gallery[activeImg] || project.image}
+                    alt={project.title}
+                    className="w-full aspect-[16/10] object-contain"
+                  />
+                </div>
                 {gallery.length > 1 && (
-                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 bg-white/80 backdrop-blur rounded-full px-3 py-2 shadow">
-                    {gallery.map((_, i) => (
+                  <div className="mt-3 grid grid-cols-4 gap-2">
+                    {gallery.map((img, i) => (
                       <button
                         key={i}
                         aria-label={`Show screenshot ${i + 1}`}
                         onClick={() => setActiveImg(i)}
-                        className={`w-2.5 h-2.5 rounded-full transition-colors ${i === activeImg ? 'bg-indigo-600' : 'bg-gray-400 hover:bg-gray-500'}`}
-                      />
+                        className={`overflow-hidden rounded-md border-2 bg-white transition-colors ${i === activeImg ? 'border-indigo-600' : 'border-transparent opacity-70 hover:opacity-100'}`}
+                      >
+                        <img src={img} alt="" className="w-full aspect-[16/10] object-cover object-top" />
+                      </button>
                     ))}
                   </div>
                 )}
               </>
             ) : (
-              <ProjectPlaceholder title={project.title} />
+              <div className="overflow-hidden rounded-lg border border-gray-200 aspect-[16/10]">
+                <ProjectPlaceholder title={project.title} />
+              </div>
             )}
           </div>
 
-          {/* Details Side */}
-          <div className="w-full md:w-1/3 p-6 bg-white flex flex-col overflow-y-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">{project.title}</h3>
-            <div className="flex flex-wrap gap-2 mb-4">
+          {/* Details */}
+          <div className="w-full md:w-2/5 p-6 flex flex-col">
+            <div className="flex flex-wrap gap-2 mb-5">
               {project.tech.split(',').map((t, i) => (
-                <span key={i} className="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-semibold rounded-md border border-indigo-100">
-                  {t.trim()}
-                </span>
+                <Tag key={i}>{t.trim()}</Tag>
               ))}
             </div>
             <p className="text-gray-600 text-sm leading-relaxed flex-grow">
               {project.description}
             </p>
             {project.link && (
-            <div className="mt-6 pt-6 border-t border-gray-100">
               <a
                 href={project.link}
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center justify-center gap-2 w-full bg-gray-900 text-white px-5 py-3 rounded-lg hover:bg-gray-700 transition-all active:scale-95 font-medium text-sm"
+                className={`${primaryButtonClass} mt-6 w-full`}
               >
                 {project.linkLabel || 'View Live Project'} <ExternalLink size={16} />
               </a>
-            </div>
-                        )}
+            )}
           </div>
         </div>
       </div>
@@ -512,24 +539,25 @@ const ProjectModal = ({ project, onClose }) => {
 
 // --- COMPONENT: STANDARD FOOTER ---
 const Footer = () => (
-    <footer className="w-full bg-gray-950 text-gray-400 flex flex-col items-center justify-center text-center p-12 md:p-16 font-mono border-t-8 border-indigo-600/50">
-      <div className="max-w-md">
-        <Terminal size={48} className="mx-auto mb-6 text-indigo-500 animate-pulse" />
-        <p className="text-sm text-gray-400 mb-8">Alex Hasenbein · Computer Science &amp; Mathematics · Penn State University Park</p>
-        <div className="flex justify-center space-x-4 mb-6">
-            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="text-gray-400 hover:text-indigo-400 transition-colors">
-                <Mail size={20} />
+    <footer className="w-full border-t border-gray-200 bg-white">
+      <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div>
+          <p className="text-sm text-gray-600">Alex Hasenbein · Computer Science &amp; Mathematics · Penn State University Park</p>
+          <p className="text-xs text-gray-400 mt-1">
+            © {new Date().getFullYear()} Alex Hasenbein. Built with React, Tailwind & Three.js particles.
+          </p>
+        </div>
+        <div className="flex items-center gap-2">
+            <a href={`mailto:${PORTFOLIO_DATA.email}`} aria-label="Email" className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-indigo-600">
+                <Mail size={18} />
             </a>
-            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-blue-400 transition-colors">
-                <Linkedin size={20} />
+            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn" className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-indigo-600">
+                <Linkedin size={18} />
             </a>
-            <a href={PORTFOLIO_DATA.github} target="_blank" rel="noreferrer" className="text-gray-400 hover:text-gray-200 transition-colors">
-                <Github size={20} />
+            <a href={PORTFOLIO_DATA.github} target="_blank" rel="noreferrer" aria-label="GitHub" className="flex h-9 w-9 items-center justify-center rounded-full text-gray-500 transition-colors hover:bg-gray-100 hover:text-indigo-600">
+                <Github size={18} />
             </a>
         </div>
-        <p className="text-xs text-gray-700 mt-4">
-          © {new Date().getFullYear()} Alex Hasenbein. <br/> Built with React, Tailwind & Three.js particles.
-        </p>
       </div>
     </footer>
 );
@@ -577,41 +605,52 @@ const App = () => {
       <main className="relative z-20 bg-gray-50">
 
         {/* ABOUT SECTION */}
-        <section id="about" className="py-28 px-6 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+        <section id="about" className="scroll-mt-16 py-24">
+          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-start">
             <div>
-              <div className="flex items-center gap-2 text-indigo-600 mb-4">
-                <GraduationCap size={28} />
-                <span className="font-extrabold tracking-wider text-sm uppercase">About Me & Education</span>
-              </div>
-              <h3 className="text-4xl font-bold mb-6 text-gray-900">The Pennsylvania State University</h3>
-              <p className="text-indigo-700 font-semibold mb-4">University Park, PA · GPA: 3.5 / 4.0</p>
-              <p className="text-xl text-gray-700 leading-relaxed mb-8 border-l-4 border-indigo-400 pl-4">
+              <SectionHeader
+                icon={<GraduationCap size={18} />}
+                eyebrow="About Me & Education"
+                title="The Pennsylvania State University"
+                subtitle={<span className="text-indigo-700 font-semibold">University Park, PA · GPA: 3.5 / 4.0</span>}
+              />
+              <p className="-mt-4 text-lg text-gray-700 leading-relaxed mb-8">
                 {PORTFOLIO_DATA.about}
               </p>
-              <ul className="space-y-3 text-gray-600 text-lg">
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> B.S. Computer Science · Minor in Mathematics</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Expected Graduation: May 2028</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Coursework: Data Structures & Algorithms, Discrete Mathematics, Linear Algebra, Object-Oriented Programming</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Commonwealth Engineering Scholar · Behrend Honors Program</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 bg-indigo-600 rounded-full flex-shrink-0"></span> Nittany AI Leadership Academy · Nittany AI ELP</li>
+              <ul className="space-y-3 text-gray-600">
+                {[
+                  "B.S. Computer Science · Minor in Mathematics",
+                  "Expected Graduation: May 2028",
+                  "Coursework: Data Structures & Algorithms, Discrete Mathematics, Linear Algebra, Object-Oriented Programming",
+                  "Commonwealth Engineering Scholar · Behrend Honors Program",
+                  "Nittany AI Leadership Academy · Nittany AI ELP",
+                ].map((fact) => (
+                  <li key={fact} className="flex items-start gap-3">
+                    <span className="mt-2.5 h-1.5 w-1.5 bg-indigo-500 rounded-full flex-shrink-0"></span>
+                    {fact}
+                  </li>
+                ))}
               </ul>
             </div>
 
-            {/* SKILLS GRID */}
-            <div id="skills" className="grid grid-cols-1 gap-6 p-6 bg-white rounded-xl shadow-xl border border-gray-100">
-                <h3 className="text-2xl font-bold text-gray-900 border-b pb-3 mb-3">Core Competencies</h3>
-              {PORTFOLIO_DATA.skills.map((skill, idx) => (
-                <div key={idx} className="p-4 rounded-lg hover:bg-indigo-50 transition-all border border-transparent hover:border-indigo-200">
-                  <div className="flex items-center gap-4 mb-1">
-                    <div className="p-3 bg-indigo-100 rounded-full text-indigo-600 flex-shrink-0">
+            {/* SKILLS */}
+            <div id="skills" className={`${cardClass} p-6 md:p-8`}>
+              <h3 className="text-xl font-bold text-gray-900 mb-6">Core Competencies</h3>
+              <div className="space-y-6">
+                {PORTFOLIO_DATA.skills.map((skill, idx) => (
+                  <div key={idx} className={idx > 0 ? 'pt-6 border-t border-gray-100' : ''}>
+                    <div className="flex items-center gap-2 mb-3 text-indigo-600">
                       {skill.icon}
+                      <h4 className="font-semibold text-gray-900">{skill.category}</h4>
                     </div>
-                    <h4 className="font-bold text-lg text-gray-900">{skill.category}</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {skill.items.split(',').map((item) => (
+                        <Tag key={item}>{item.trim()}</Tag>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-gray-600 text-sm pl-[60px]">{skill.items}</p>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </section>
@@ -620,44 +659,47 @@ const App = () => {
         <WorkExperienceSection />
 
         {/* PROJECTS SECTION */}
-        <section id="projects" className="py-28 bg-white border-y border-gray-200 shadow-inner">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-16">
-              <h3 className="text-4xl font-bold text-gray-900 mb-3">Selected Works</h3>
-              <p className="text-xl text-gray-500">A showcase of technical depth and design precision.</p>
-              <div className="mt-4 text-sm text-gray-400 font-mono">
-                // Click cards to view technical details
-              </div>
-            </div>
+        <section id="projects" className="scroll-mt-16 py-24 border-t border-gray-200">
+          <div className="max-w-6xl mx-auto px-6">
+            <SectionHeader
+              icon={<Code2 size={18} />}
+              eyebrow="Projects"
+              title="Selected Works"
+              subtitle="A showcase of technical depth and design precision."
+            />
 
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {PROJECTS_DATA.map((project) => (
-                <div
+                <button
                   key={project.id}
-                  className="group cursor-pointer bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 border border-gray-100"
+                  type="button"
+                  className={`${cardClass} group flex flex-col overflow-hidden text-left transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-100/60 hover:border-indigo-200`}
                   onClick={() => setActiveProject(project)}
                 >
-                  <div className="relative overflow-hidden aspect-[4/3] rounded-t-xl">
+                  <div className="relative overflow-hidden aspect-[16/10] bg-gray-100 border-b border-gray-200">
                     {project.image ? (
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover object-top w-full h-full group-hover:scale-[1.03] transition-transform duration-500"
                       />
                     ) : (
                       <ProjectPlaceholder title={project.title} />
                     )}
-                    <div className="absolute inset-0 bg-gray-900/0 group-hover:bg-gray-900/30 transition-colors flex items-center justify-center">
-                      <span className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 bg-white/90 backdrop-blur text-gray-900 px-4 py-2 rounded-full shadow-xl font-medium text-sm transition-all duration-300 flex items-center gap-2 border border-gray-200">
-                        <ExternalLink size={14} /> Preview Details
-                      </span>
+                  </div>
+                  <div className="flex flex-1 flex-col p-5">
+                    <h3 className="text-lg font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">{project.title}</h3>
+                    <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-3">{project.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-1.5">
+                      {project.tech.split(',').slice(0, 4).map((t) => (
+                        <Tag key={t}>{t.trim()}</Tag>
+                      ))}
                     </div>
+                    <span className="mt-auto pt-5 inline-flex items-center gap-1 text-sm font-semibold text-indigo-600">
+                      View details <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                    </span>
                   </div>
-                  <div className="p-5">
-                    <h4 className="text-2xl font-bold text-gray-900 group-hover:text-indigo-600 transition-colors">{project.title}</h4>
-                    <p className="text-sm text-gray-500 mt-1 font-mono">{project.tech}</p>
-                  </div>
-                </div>
+                </button>
               ))}
             </div>
           </div>
@@ -670,21 +712,30 @@ const App = () => {
         <ResearchSection />
 
         {/* CONTACT SECTION */}
-        <section id="contact" className="py-40 px-6 max-w-6xl mx-auto text-center">
-          <h3 className="text-5xl md:text-7xl font-extrabold text-gray-900 mb-8">Let's Connect</h3>
-          <p className="text-2xl text-gray-600 mb-14 max-w-3xl mx-auto">
-            Based in Austin, TX · Studying at University Park, PA.
-          
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-8">
-            <a href={`mailto:${PORTFOLIO_DATA.email}`} className="flex items-center justify-center gap-3 px-10 py-5 text-lg bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors shadow-xl shadow-indigo-600/30 font-semibold">
-              <Mail size={24} />
-              {PORTFOLIO_DATA.email}
-            </a>
-            <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-3 px-10 py-5 text-lg bg-white text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors shadow-lg font-semibold">
-              <Linkedin size={24} className='text-[#0077b5]' />
-              LinkedIn Profile
-            </a>
+        <section id="contact" className="scroll-mt-16 py-24 border-t border-gray-200">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className={`${cardClass} px-6 py-16 md:py-20 text-center`}>
+              <div>
+                <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 mb-4">Let's Connect</h2>
+                <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+                  Based in Austin, TX · Studying at University Park, PA.
+                </p>
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                  <a href={`mailto:${PORTFOLIO_DATA.email}`} className={`${primaryButtonClass} px-6 py-3 text-base`}>
+                    <Mail size={18} />
+                    {PORTFOLIO_DATA.email}
+                  </a>
+                  <a href={PORTFOLIO_DATA.linkedin} target="_blank" rel="noreferrer" className={`${secondaryButtonClass} px-6 py-3 text-base`}>
+                    <Linkedin size={18} className="text-[#0077b5]" />
+                    LinkedIn Profile
+                  </a>
+                  <a href={PORTFOLIO_DATA.github} target="_blank" rel="noreferrer" className={`${secondaryButtonClass} px-6 py-3 text-base`}>
+                    <Github size={18} />
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
